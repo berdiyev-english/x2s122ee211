@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Befilm — Watch Movies & TV Shows in English Free | Фильмы на английском бесплатно</title>
+
+<!-- SEO & Indexing -->
+<meta name="description" content="Befilm — watch movies and TV shows in English for free. Stream HD content without registration. Бифильм — смотрите фильмы и сериалы на английском языке бесплатно.">
+<meta name="keywords" content="befilm, бифильм, фильмы на английском, movies in english, watch movies free, free movies online, TV shows english, сериалы на английском, смотреть фильмы бесплатно, английский язык фильмы, bemat, stream movies, HD movies free">
+<meta name="author" content="Abdurrahim Berdiev — BEMAT Project">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<link rel="canonical" href="https://befilm.ru">
+
+<!-- Open Graph / Social Media -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Befilm — Watch Movies & TV Shows in English Free">
+<meta property="og:description" content="Stream thousands of movies and TV shows in English for free. No sign-up required. HD quality. Смотрите фильмы на английском бесплатно.">
+<meta property="og:url" content="https://befilm.ru">
+<meta property="og:site_name" content="Befilm">
+<meta property="og:image" content="https://images.metahub.space/poster/medium/tt32141377/img">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:type" content="image/jpeg">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Befilm — Watch Movies & TV Shows Free">
+<meta name="twitter:description" content="Stream movies and TV shows in English for free. HD quality, no registration.">
+<meta name="twitter:image" content="https://images.metahub.space/poster/medium/tt32141377/img">
+
+<!-- ======================================================== -->
+<!-- ПУТИ К ВАШИМ ФАЙЛАМ ДЛЯ PWA (Положите файлы в папку с сайтом) -->
+<!-- ======================================================== -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="/web-app-manifest-192x192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Befilm">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Befilm">
+<meta name="theme-color" content="#08080d">
+<meta name="msapplication-TileColor" content="#08080d">
+
+<!-- Structured Data -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Befilm","alternateName":["Бифильм","BEMAT Film"],"url":"https://befilm.ru","description":"Watch movies and TV shows in English for free. Смотрите фильмы на английском бесплатно.","potentialAction":{"@type":"SearchAction","target":"https://befilm.ru/?q={search_term_string}","query-input":"required name=search_term_string"},"author":{"@type":"Person","name":"Abdurrahim Berdiev","url":"https://berdiyev-eng.ru/"}}</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08080d;--bg2:#111118;--bg3:#1a1a24;--surface:#222230;--border:rgba(255,255,255,.06);--accent:#7c3aed;--accent2:#a855f7;--red:#ef4444;--yellow:#facc15;--green:#10b981;--orange:#f59e0b;--text:#f0f0f5;--text2:#71717a;--radius:14px;--hdr:66px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 10% 20%,rgba(124,58,237,.06),transparent 60%),radial-gradient(ellipse 60% 50% at 90% 80%,rgba(239,68,68,.03),transparent 60%);pointer-events:none;z-index:0}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#333;border-radius:3px}
+::selection{background:var(--accent);color:#fff}a{text-decoration:none;color:inherit}img{display:block}button{font-family:inherit;cursor:pointer}
+
+/* PREMIUM LOADER ANIMATION */
+#loader{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease, transform .6s ease}
+#loader.hide{opacity:0;transform:scale(1.05);pointer-events:none}
+.premium-text{font-size:clamp(40px, 8vw, 64px);font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.05);position:relative;user-select:none}
+.premium-text::before{content:attr(data-text);position:absolute;top:0;left:0;width:0%;height:100%;color:transparent;background:linear-gradient(135deg,var(--accent2),var(--red));-webkit-background-clip:text;background-clip:text;white-space:nowrap;overflow:hidden;animation:textFill 1.5s cubic-bezier(.86,0,.07,1) forwards;filter:drop-shadow(0 0 10px rgba(124,58,237,.3))}
+@keyframes textFill{0%{width:0%}100%{width:100%;filter:drop-shadow(0 0 25px rgba(239,68,68,.6))}}
+.loader-sub{color:var(--text2);font-size:13px;margin-top:20px;letter-spacing:1px;text-transform:uppercase;opacity:0;animation:fadeIn 0s 0s forwards}
+@keyframes fadeIn{to{opacity:1}}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;height:var(--hdr);background:rgba(8,8,13,.82);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);z-index:500}
+.hdr{max-width:1400px;margin:0 auto;height:100%;padding:0 20px;display:flex;align-items:center;gap:12px}
+.logo{font-size:26px;font-weight:900;letter-spacing:-.5px;background:linear-gradient(135deg,var(--accent2),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;user-select:none;flex-shrink:0;cursor:pointer}
+.nav{display:flex;gap:3px;margin-left:12px}
+.nav-btn{padding:7px 14px;border-radius:8px;border:none;background:0;color:var(--text2);font-size:13px;font-weight:600;transition:.2s}
+.nav-btn:hover{color:var(--text);background:var(--bg3)}.nav-btn.act{color:#fff;background:var(--accent)}
+.spacer{flex:1}
+.search-open{display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);font-size:13px;transition:.2s;cursor:pointer}
+.search-open:hover{border-color:var(--accent);color:var(--text)}.search-open svg{width:16px;height:16px;flex-shrink:0}
+.kbd{padding:2px 6px;border-radius:4px;background:var(--bg3);font-size:10px;font-weight:700;border:1px solid var(--border);margin-left:6px}
+.money-btn{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid rgba(250,204,21,.25);background:rgba(250,204,21,.08);color:var(--yellow);transition:.2s;flex-shrink:0}
+.money-btn:hover{background:rgba(250,204,21,.15);border-color:rgba(250,204,21,.4);transform:scale(1.05)}.money-btn svg{width:20px;height:20px}
+
+/* HERO */
+.hero{position:relative;margin-top:var(--hdr);padding:50px 20px 40px;overflow:hidden}
+.hero-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:30px;position:relative;z-index:2}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .8s}.hero-bg.ld{opacity:.2}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg),transparent 70%),linear-gradient(to right,var(--bg),transparent 60%);z-index:1}
+.hero-glow{position:absolute;width:400px;height:400px;border-radius:50%;filter:blur(100px);opacity:.1;pointer-events:none;z-index:0}
+.glow1{top:-80px;left:-80px;background:var(--accent)}.glow2{bottom:-80px;right:-80px;background:var(--red)}
+.hero-text{flex:1;max-width:580px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:8px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.25);color:var(--accent2);font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:clamp(22px,4vw,40px);font-weight:900;line-height:1.1;margin-bottom:10px}
+.hero-meta{display:flex;gap:12px;align-items:center;font-size:13px;color:var(--text2);margin-bottom:14px;flex-wrap:wrap}
+.q-tag{padding:2px 8px;border-radius:5px;font-size:11px;font-weight:700}
+.q-hd{background:rgba(16,185,129,.12);color:var(--green);border:1px solid rgba(16,185,129,.2)}
+.q-ts{background:rgba(245,158,11,.12);color:var(--orange);border:1px solid rgba(245,158,11,.2)}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:11px 24px;border-radius:10px;border:none;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 20px rgba(124,58,237,.25)}
+.hero-poster{width:160px;flex-shrink:0;aspect-ratio:2/3;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.hero-poster img{width:100%;height:100%;object-fit:cover}
+
+/* CONTAINER */
+.container{max-width:1400px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+.section-bar{display:flex;gap:8px;align-items:center;margin:28px 0 20px;flex-wrap:wrap}
+.section-title{font-size:20px;font-weight:800;margin-right:auto}
+.filter-sel{padding:7px 26px 7px 10px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:12px;font-weight:600;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%2371717a' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;transition:.2s}
+.filter-sel:focus{border-color:var(--accent)}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:20px}
+.card{position:relative;cursor:pointer;transition:transform .3s;border-radius:var(--radius)}
+.card:hover{transform:translateY(-7px)}.card:hover .card-poster{box-shadow:0 14px 35px rgba(0,0,0,.5)}
+.card:hover .c-play{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.card-poster{aspect-ratio:2/3;border-radius:var(--radius);overflow:hidden;position:relative;transition:box-shadow .3s}
+.c-letter{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:56px;font-weight:900;color:rgba(255,255,255,.1);z-index:0;text-transform:uppercase}
+.card-poster>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0;transition:opacity .4s}
+.card-poster>img.ld{opacity:1}
+.c-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.7);width:48px;height:48px;border-radius:50%;background:rgba(124,58,237,.85);display:flex;align-items:center;justify-content:center;opacity:0;transition:.3s;box-shadow:0 4px 16px rgba(124,58,237,.4);z-index:3}
+.c-play svg{width:20px;height:20px;fill:#fff;margin-left:2px}
+.c-badge{position:absolute;top:8px;padding:2px 7px;border-radius:5px;font-size:10px;font-weight:700;backdrop-filter:blur(6px);z-index:2}.c-badge.l{left:8px}.c-badge.r{right:8px}
+.badge-m{background:rgba(124,58,237,.6);color:#fff}.badge-tv{background:rgba(6,182,212,.6);color:#fff}
+.card-info{padding:10px 2px}.card-title{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-yr{font-size:11px;color:var(--text2);margin-top:3px}
+.sk .card-poster{background:var(--bg3)!important}.sk .c-letter{display:none}
+.sk .sk-b{height:13px;border-radius:4px;margin-top:7px;background:linear-gradient(110deg,var(--bg3) 30%,var(--surface) 50%,var(--bg3) 70%);background-size:200% 100%;animation:shim 1.5s linear infinite}
+.sk .sk-b.s{width:50%}@keyframes shim{to{background-position:-200% 0}}
+.more-wrap{text-align:center;margin:36px 0 16px}
+.more-btn{padding:12px 40px;border-radius:12px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:14px;font-weight:700;transition:.2s}
+.more-btn:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}.more-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+/* MODAL & PLAYER */
+.modal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.88);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.modal.act{opacity:1;visibility:visible}
+.p-box{width:94%;max-width:1100px;background:var(--bg2);border-radius:20px;border:1px solid var(--border);overflow:hidden;transform:translateY(25px) scale(.97);transition:.4s cubic-bezier(.16,1,.3,1);max-height:95vh;overflow-y:auto}
+.modal.act .p-box,.modal.act .s-box,.modal.act .donate-popup{transform:translateY(0) scale(1)}
+.p-top{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.p-top h3{font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:12px}
+.close-x{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--bg3);color:var(--text2);display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0;cursor:pointer}
+.close-x:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.p-frame{width:100%;aspect-ratio:16/9;background:#000}.p-frame iframe{width:100%;height:100%;border:none}
+.p-ctrls{padding:12px 20px;background:var(--bg);display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:1px solid var(--border)}
+.p-ctrls label{font-size:12px;color:var(--text2);font-weight:600}
+.ep-sel{padding:5px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:12px;outline:none}
+.p-srvs{padding:12px 20px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--bg)}
+.p-srvs>span{font-size:12px;color:var(--text2);font-weight:600;margin-right:6px}
+.srv{padding:7px 12px;border-radius:7px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);font-size:12px;font-weight:600;transition:.2s;cursor:pointer}
+.srv:hover{color:#fff;background:var(--bg3)}.srv.act{background:var(--accent);color:#fff;border-color:var(--accent)}
+.p-warn{padding:10px 20px;display:flex;align-items:center;gap:8px;background:rgba(250,204,21,.04);border-top:1px solid var(--border);font-size:12px;color:rgba(250,204,21,.6);line-height:1.5}
+
+/* SEARCH */
+.s-box{width:94%;max-width:620px;transform:translateY(-20px);transition:.3s}
+.s-wrap{display:flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px 18px}
+.s-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,58,237,.12)}
+.s-wrap svg{width:20px;height:20px;stroke:var(--text2);flex-shrink:0}
+.s-wrap input{flex:1;background:0;border:0;outline:0;color:var(--text);font-size:16px}.s-wrap input::placeholder{color:var(--text2)}
+.s-esc{padding:3px 8px;border-radius:5px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:11px;font-weight:700;cursor:pointer}
+.s-tabs{display:flex;gap:6px;padding:12px 18px 0}
+.s-tab{padding:5px 14px;border-radius:7px;border:1px solid var(--border);background:var(--bg3);color:var(--text2);font-size:12px;font-weight:600;transition:.2s;cursor:pointer}
+.s-tab.act{background:var(--accent);color:#fff;border-color:var(--accent)}
+.s-results{margin-top:12px;max-height:55vh;overflow-y:auto;background:var(--bg2);border-radius:14px;border:1px solid var(--border)}
+.s-results:empty{display:none}
+.sr{display:flex;align-items:center;gap:12px;padding:10px 16px;transition:.15s;cursor:pointer;border-bottom:1px solid var(--border)}
+.sr:last-child{border-bottom:none}.sr:hover{background:var(--bg3)}
+.sr-poster{width:44px;height:66px;border-radius:8px;flex-shrink:0;overflow:hidden;position:relative}
+.sr-poster img{width:100%;height:100%;object-fit:cover}
+.sr-poster .sr-l{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:rgba(255,255,255,.15)}
+.sr-info h4{font-size:14px;font-weight:600}.sr-info p{font-size:12px;color:var(--text2);margin-top:2px}
+.s-hint{padding:20px;text-align:center;color:var(--text2);font-size:13px}
+
+/* DONATE POPUP */
+.donate-popup{width:92%;max-width:480px;background:var(--bg2);border-radius:24px;border:1px solid var(--border);overflow:hidden;transform:translateY(25px) scale(.97);transition:.4s cubic-bezier(.16,1,.3,1)}
+.donate-top{position:relative;padding:40px 32px 32px;text-align:center;background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(239,68,68,.08));border-bottom:1px solid var(--border)}
+.donate-top .close-x{position:absolute;top:16px;right:16px}
+.donate-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--red));display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 8px 30px rgba(124,58,237,.3)}
+.donate-icon svg{width:32px;height:32px;fill:#fff}
+.donate-top h3{font-size:22px;font-weight:800;margin-bottom:10px}
+.donate-top p{color:var(--text2);font-size:14px;line-height:1.6;max-width:380px;margin:0 auto}
+.donate-body{padding:28px 32px 36px;text-align:center}
+.donate-features{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;text-align:left}
+.donate-feat{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text2)}
+.donate-feat .ic{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.donate-big-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 40px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--red));color:#fff;font-size:17px;font-weight:800;transition:.2s;border:none;width:100%;text-decoration:none}
+.donate-big-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(124,58,237,.35)}
+.donate-small{display:block;margin-top:12px;font-size:12px;color:var(--text2)}
+
+/* ABOUT SECTION */
+.about-section{max-width:900px;margin:50px auto 0;padding:0 20px;position:relative;z-index:1}
+.about-card{background:var(--bg2);border:1px solid var(--border);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:260px 1fr}
+.about-photo-wrap{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(6,182,212,.1))}
+.about-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 10%}
+.about-photo-overlay{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(to top,rgba(0,0,0,.9),transparent);display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.about-photo-overlay h4{font-size:16px;font-weight:800;color:#fff}
+.about-photo-overlay p{font-size:12px;color:rgba(255,255,255,.7)}
+.about-right{padding:32px 30px;display:flex;flex-direction:column;justify-content:center}
+.about-right h3{font-size:22px;font-weight:800;margin-bottom:6px}
+.about-right .about-sub{font-size:14px;color:var(--accent2);font-weight:600;margin-bottom:14px}
+.about-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.about-badges span{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;background:rgba(124,58,237,.1);color:var(--accent2);border:1px solid rgba(124,58,237,.2)}
+.about-desc{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:16px}
+.about-list{list-style:none;margin-bottom:18px}
+.about-list li{font-size:14px;color:var(--text2);padding:5px 0;display:flex;align-items:center;gap:10px}
+.about-list li::before{content:'✓';color:var(--green);font-weight:800;font-size:16px}
+.about-stat{font-size:15px;color:var(--yellow);font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.about-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:12px;background:var(--accent);color:#fff;font-size:15px;font-weight:700;border:none;transition:.2s;text-decoration:none;align-self:flex-start}
+.about-link:hover{background:var(--accent2);transform:translateY(-2px)}
+
+footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:1px solid var(--border);margin-top:40px;position:relative;z-index:1}
+.footer-sub{color:var(--text2);font-size:11px;margin-top:8px}
+
+.mnav{display:none;position:fixed;bottom:0;left:0;right:0;height:60px;background:rgba(8,8,13,.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);z-index:500;justify-content:space-around;align-items:center}
+.mnav button{display:flex;flex-direction:column;align-items:center;gap:3px;background:0;border:0;color:var(--text2);font-size:10px;font-weight:600;transition:.2s;cursor:pointer}
+.mnav button.act{color:var(--accent2)}.mnav svg{width:20px;height:20px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg3);color:var(--text);padding:12px 24px;border-radius:10px;border:1px solid var(--border);font-size:13px;font-weight:600;z-index:9999;transition:.4s;box-shadow:0 8px 24px rgba(0,0,0,.4)}.toast.show{transform:translateX(-50%) translateY(0)}
+
+@media(max-width:768px){
+.nav,.kbd{display:none}
+.grid{grid-template-columns:repeat(3,1fr);gap:12px}
+.hero-poster{display:none}.hero{padding:30px 16px 24px}.hero h1{font-size:22px}
+.hdr,.container{padding:0 14px}
+.mnav{display:flex}body{padding-bottom:60px}
+.section-bar{gap:6px;margin:18px 0 14px}.section-title{font-size:16px;width:100%}
+.about-card{grid-template-columns:1fr}
+.about-photo-wrap{height:280px}
+.about-photo-wrap img{object-position:center 20%}
+.about-right{padding:24px 20px;text-align:center}
+.about-badges{justify-content:center}
+.about-list{display:inline-block;text-align:left}
+.about-stat{justify-content:center}
+.about-link{align-self:center}
+.donate-popup{width:95%;max-width:420px}.donate-top{padding:28px 20px 24px}.donate-body{padding:20px}
+.p-top{padding:12px 14px}.p-srvs,.p-ctrls{padding:10px 14px}
+.card-info{padding:8px 2px}.card-title{font-size:12px}.c-letter{font-size:36px}
+}
+@media(max-width:380px){.grid{grid-template-columns:repeat(2,1fr);gap:10px}}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+    <div class="premium-text" data-text="Befilm">Befilm</div>
+    <p class="loader-sub">Для стабильной работы используйте VPN</p>
+</div>
+
+<header>
+<div class="hdr">
+    <span class="logo" onclick="goHome()">Befilm</span>
+    <nav class="nav" id="nav">
+        <button class="nav-btn act" data-t="movies" onclick="switchTab('movies')">🎬 Movies</button>
+        <button class="nav-btn" data-t="tv" onclick="switchTab('tv')">📺 TV Shows</button>
+    </nav>
+    <div class="spacer"></div>
+    <button class="money-btn" onclick="openDonate()" title="Support the project">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+    </button>
+    <button class="search-open" onclick="openSearch()">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <span class="kbd">⌘K</span>
+    </button>
+</div>
+</header>
+
+<section class="hero" id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-glow glow1"></div><div class="hero-glow glow2"></div>
+    <div class="hero-inner">
+        <div class="hero-text" id="heroText">
+            <div class="hero-badge">✨ Free Streaming</div>
+            <h1>Welcome to Befilm</h1>
+            <p class="desc">Stream thousands of movies and TV shows in English for free. No sign-up. Just press play.</p>
+        </div>
+        <div class="hero-poster" id="heroPoster" style="display:none"></div>
+    </div>
+</section>
+
+<main>
+<div class="container">
+    <div class="section-bar">
+        <h2 class="section-title" id="secTitle">🎬 Latest Movies</h2>
+        <select class="filter-sel" id="yearF" onchange="applyFilters()"><option value="">All Years</option></select>
+        <select class="filter-sel" id="sortF" onchange="applyFilters()"><option value="desc">Newest First</option><option value="asc">Oldest First</option></select>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="more-wrap" id="moreW" style="display:none"><button class="more-btn" id="moreBtn" onclick="loadMore()">Load More</button></div>
+</div>
+</main>
+
+<!-- PLAYER -->
+<div class="modal" id="playerModal">
+<div class="p-box">
+    <div class="p-top"><h3 id="pTitle">Loading...</h3><button class="close-x" onclick="closePlayer()"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg></button></div>
+    <div class="p-frame"><iframe id="pFrame" allowfullscreen allow="autoplay;encrypted-media;picture-in-picture;fullscreen"></iframe></div>
+    <div class="p-ctrls" id="tvCtrls" style="display:none">
+        <label>Season:</label><select class="ep-sel" id="sSel" onchange="updateFrame()"></select>
+        <label style="margin-left:8px">Episode:</label><select class="ep-sel" id="eSel" onchange="updateFrame()"></select>
+    </div>
+    <div class="p-warn"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>Use <b>uBlock Origin</b> or <b>Brave Browser</b> to block ads. If a server doesn't load — try another one.</div>
+    <div class="p-srvs" id="srvList"></div>
+</div>
+</div>
+
+<!-- SEARCH -->
+<div class="modal" id="searchModal">
+<div class="s-box">
+    <div class="s-wrap"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg><input type="text" id="sInput" placeholder="Search movies & TV shows..." autocomplete="off"><button class="s-esc" onclick="closeSearch()">ESC</button></div>
+    <div class="s-tabs"><button class="s-tab act" id="stM" onclick="setSearchType('movie')">🎬 Movies</button><button class="s-tab" id="stT" onclick="setSearchType('tv')">📺 TV Shows</button></div>
+    <div class="s-results" id="sResults"></div>
+</div>
+</div>
+
+<!-- DONATE POPUP -->
+<div class="modal" id="donateModal">
+<div class="donate-popup">
+    <div class="donate-top">
+        <button class="close-x" onclick="closeDonate()"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+        <div class="donate-icon"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <h3>Помогите проекту Befilm 💜</h3>
+        <p>Я разрабатываю этот сервис полностью один. Каждый донат помогает оплачивать серверы и мотивирует развивать проект.</p>
+    </div>
+    <div class="donate-body">
+        <div class="donate-features">
+            <div class="donate-feat"><span class="ic" style="background:rgba(124,58,237,.12)">🎬</span> Поддержка сервиса и новые фильмы</div>
+            <div class="donate-feat"><span class="ic" style="background:rgba(16,185,129,.12)">⚡</span> Быстрые серверы и стабильность</div>
+            <div class="donate-feat"><span class="ic" style="background:rgba(250,204,21,.12)">❤️</span> Разработка новых функций</div>
+        </div>
+        <a href="https://pay.cloudtips.ru/p/8f56d7d3" target="_blank" class="donate-big-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Поддержать проект</a>
+        <span class="donate-small">Любая сумма · Безопасная оплата · CloudTips</span>
+    </div>
+</div>
+</div>
+
+<!-- ABOUT SECTION -->
+<section class="about-section">
+<div class="about-card">
+    <div class="about-photo-wrap">
+        <img src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg" alt="Абдуррахим Бердиев">
+        <div class="about-photo-overlay">
+            <h4>Абдуррахим Бердиев</h4>
+            <p>Founder of BEMAT · English Teacher</p>
+        </div>
+    </div>
+    <div class="about-right">
+        <h3>Об авторе</h3>
+        <p class="about-sub">Помогаю заговорить на английском. Подготовка к ЕГЭ/ОГЭ, IELTS/TOEFL.</p>
+        <div class="about-badges">
+            <span>АСПИРАНТ ПЕД НАУК</span>
+            <span>TEFL</span>
+            <span>C2</span>
+            <span>Автор BEMAT</span>
+        </div>
+        <ul class="about-list">
+            <li>Разговорная практика</li>
+            <li>Грамматика без теории</li>
+            <li>Стратегии экзаменов</li>
+        </ul>
+        <p class="about-stat">✨ Помог более 2 000+ людям</p>
+        <a class="about-link" href="https://berdiyev-eng.ru/" target="_blank">🌐 berdiyev-eng.ru →</a>
+    </div>
+</div>
+</section>
+
+<!-- MOBILE NAV -->
+<nav class="mnav">
+    <button class="act" data-t="movies" onclick="switchTab('movies')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>Movies</button>
+    <button data-t="tv" onclick="switchTab('tv')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>TV</button>
+    <button onclick="openSearch()"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>Search</button>
+    <button onclick="openDonate()"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Donate</button>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<footer>
+    <p><b style="color:#fff">Befilm</b> · bemat project</p>
+    <p class="footer-sub">This site does not store any files. All content provided by third-party services.</p>
+</footer>
+
+<script>
+// SW Registration
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(()=>{});
+    });
+}
+
+const API='https://moviesapi.club/api/discover';
+const EMBED='https://moviesapi.club';
+const PX=[u=>'https://corsproxy.io/?url='+encodeURIComponent(u),u=>'https://api.allorigins.win/raw?url='+encodeURIComponent(u)];
+const SERVERS=[
+{n:'MoviesAPI ⭐',u:(id,t,s,e)=>t==='tv'?`${EMBED}/tv/${id}-${s}-${e}`:`${EMBED}/movie/${id}`},
+{n:'VidSrc',u:(id,t,s,e)=>t==='tv'?`https://vidsrc.cc/v2/embed/tv/${id}/${s}/${e}`:`https://vidsrc.cc/v2/embed/movie/${id}`},
+{n:'Embed.su',u:(id,t,s,e)=>t==='tv'?`https://embed.su/embed/tv/${id}/${s}/${e}`:`https://embed.su/embed/movie/${id}`},
+{n:'SuperEmbed',u:id=>`https://multiembed.mov/?video_id=${id}&tmdb=1`},
+{n:'2Embed',u:id=>`https://www.2embed.cc/embed/${id}`},
+{n:'SmashyStream',u:id=>`https://embed.smashystream.com/playere.php?tmdb=${id}`},
+{n:'VidLink',u:(id,t,s,e)=>t==='tv'?`https://vidlink.pro/tv/${id}/${s}/${e}`:`https://vidlink.pro/movie/${id}`},
+];
+const PAL=[['#667eea','#764ba2'],['#f093fb','#f5576c'],['#4facfe','#00f2fe'],['#43e97b','#38f9d7'],['#fa709a','#fee140'],['#a18cd1','#fbc2eb'],['#fccb90','#d57eeb'],['#ff9a9e','#fad0c4'],['#a1c4fd','#c2e9fb'],['#d4fc79','#96e6a1'],['#fbc2eb','#a6c1ee'],['#e0c3fc','#8ec5fc'],['#f5576c','#ff6b6b'],['#c471f5','#fa71cd'],['#48c6ef','#6f86d6'],['#accbee','#e7f0fd'],['#e9defa','#fbfcdb'],['#667eea','#43e97b'],['#feada6','#f5efef'],['#fdcbf1','#e6dee9']];
+
+// Встроенные данные на случай, если API недоступно
+const FB_M=[{t:"Cold Storage",i:"tt8879928",m:696393,y:2026,q:"HD"},{t:"Scream 7",i:"tt27047903",m:1159559,y:2026,q:"TS"},{t:"War Machine",i:"tt15940132",m:1265609,y:2026,q:"HD"},{t:"The Moment",i:"tt35524793",m:1422562,y:2026,q:"HD"},{t:"Whistle",i:"tt29550683",m:1193501,y:2026,q:"HD"},{t:"Shelter",i:"tt32357218",m:1290821,y:2026,q:"HD"},{t:"GOAT",i:"tt27613895",m:1297842,y:2026,q:"TS"},{t:"28 Years Later: The Bone Temple",i:"tt32141377",m:1272837,y:2026,q:"HD"},{t:"Return to Silent Hill",i:"tt22868010",m:680493,y:2026,q:"HD"},{t:"Mercy",i:"tt31050594",m:1236153,y:2026,q:"HD"},{t:"Hellfire",i:"tt14507394",m:1088434,y:2026,q:"HD"},{t:"Primate",i:"tt33028778",m:1315303,y:2026,q:"HD"}];
+const FB_T=[{t:"The Pitt",i:"tt31938062",m:250307,q:"HD"},{t:"Hijack",i:"tt19854762",m:198102,q:"HD"},{t:"ONE PIECE",i:"tt11737520",m:111110,q:"HD"},{t:"The Rookie",i:"tt7587890",m:79744,q:"HD"},{t:"Bridgerton",i:"tt8740790",m:91239,q:"HD"},{t:"A Knight of the Seven Kingdoms",i:"tt27497448",m:224372,q:"HD"},{t:"Spartacus: House of Ashur",i:"tt29921437",m:240459,q:"HD"},{t:"Wonder Man",i:"tt21066182",m:198178,q:"HD"},{t:"Fallout",i:"tt12637874",m:106379,q:"HD"},{t:"Cross",i:"tt11794812",m:213306,q:"HD"}];
+
+let tab='movies',page=1,lastPage=1,apiOk=false,searchType='movie',searchTO;
+let P={id:null,type:null,title:'',s:1,e:1,si:0};
+
+function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function escA(s){return s?s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):''}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+function hash(s){let h=0;for(let i=0;i<s.length;i++)h=((h<<5)-h)+s.charCodeAt(i);return Math.abs(h)}
+function colors(s){return PAL[hash(s)%PAL.length]}
+function qC(q){return(q||'').toUpperCase().includes('TS')?'q-ts':'q-hd'}
+function qL(q){return(q||'').toUpperCase().includes('TS')?'TS':'HD'}
+function poster(imdb){return`https://images.metahub.space/poster/medium/${imdb}/img`}
+function bg(imdb){return`https://images.metahub.space/background/medium/${imdb}/img`}
+function norm(item){return{title:item.t||item.orig_title||item.title||'',imdb:item.i||item.imdb_id||'',tmdb:item.m||item.tmdbid||item.id||'',year:item.y||item.year||'',quality:item.q||item.quality||item.Quality||'HD',type:item.type||tab}}
+
+async function smartFetch(url){
+try{const c=new AbortController();const t=setTimeout(()=>c.abort(),5000);const r=await fetch(url,{signal:c.signal});clearTimeout(t);if(r.ok)return r.json()}catch(e){}
+for(const px of PX){try{const c=new AbortController();const t=setTimeout(()=>c.abort(),7000);const r=await fetch(px(url),{signal:c.signal});clearTimeout(t);if(r.ok)return r.json()}catch(e){}}
+return null}
+
+function parseAPI(j){if(!j)return null;let it=Array.isArray(j.data)?j.data:Array.isArray(j.result)?j.result:[];return{items:it,lastPage:j.last_page||1}}
+
+function cardHTML(item,mt){
+const n=norm(item);const[c1,c2]=colors(n.title);const l=n.title.charAt(0).toUpperCase();const isTV=mt==='tv';
+return`<div class="card" data-tmdb="${n.tmdb}" data-type="${isTV?'tv':'movie'}" data-title="${escA(n.title)}">
+<div class="card-poster" style="background:linear-gradient(135deg,${c1},${c2})">
+<span class="c-letter">${l}</span>
+${n.imdb?`<img src="${poster(n.imdb)}" alt="${escA(n.title)}" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()">`:''}
+<div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+<span class="c-badge l ${isTV?'badge-tv':'badge-m'}">${isTV?'TV':'MOVIE'}</span>
+<span class="c-badge r ${qC(n.quality)}">${qL(n.quality)}</span>
+</div>
+<div class="card-info"><div class="card-title">${esc(n.title)}</div><div class="card-yr">${n.year||''}</div></div>
+</div>`}
+
+function renderGrid(items,mt,append){
+const g=document.getElementById('grid');
+if(!items||!items.length){if(!append)g.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text2)"><p style="font-size:18px">😕 Nothing found</p></div>';return}
+if(append)g.innerHTML+=items.map(i=>cardHTML(i,mt)).join('');else g.innerHTML=items.map(i=>cardHTML(i,mt)).join('');
+document.getElementById('moreW').style.display=page<lastPage?'':'none'}
+
+function renderHero(item,mt){
+if(!item)return;const n=norm(item);const isTV=mt==='tv';
+const hbg=document.getElementById('heroBg');
+if(n.imdb){hbg.style.backgroundImage=`url(${bg(n.imdb)})`;const img=new Image();img.onload=()=>hbg.classList.add('ld');img.src=bg(n.imdb)}
+document.getElementById('heroText').innerHTML=`
+<div class="hero-badge">${isTV?'📺 TV Show':'🎬 Movie'} · Latest on Befilm</div>
+<h1>${esc(n.title)}</h1>
+<div class="hero-meta"><span>${n.year}</span><span class="q-tag ${qC(n.quality)}">${qL(n.quality)}</span></div>
+<div class="hero-btns"><button class="btn btn-primary" onclick="openPlayer('${n.tmdb}','${isTV?'tv':'movie'}','${escA(n.title)}')">▶ Watch Now</button></div>`;
+const hp=document.getElementById('heroPoster');
+if(n.imdb){hp.style.display='';hp.innerHTML=`<img src="${poster(n.imdb)}" alt="" onerror="this.parentElement.style.display='none'" style="width:100%;height:100%;object-fit:cover">`}else hp.style.display='none'}
+
+function hideLoader(){
+    const l=document.getElementById('loader');
+    if(l){l.classList.add('hide');setTimeout(()=>l.remove(),600)}
+}
+
+// 🚀 МГНОВЕННАЯ ИНИЦИАЛИЗАЦИЯ (СРАЗУ ОТОБРАЖАЕМ ДАННЫЕ)
+function initLocal(t){
+    const d = t === 'tv' ? FB_T : FB_M;
+    lastPage = 1;
+    renderGrid(d, t);
+    if(d.length) renderHero(d[0], t);
+}
+
+async function switchTab(t, bypassInit=false){
+    tab=t;page=1;
+    document.querySelectorAll('.nav-btn,.mnav button[data-t]').forEach(b=>b.classList.toggle('act',b.dataset.t===t));
+    document.getElementById('secTitle').textContent=t==='tv'?'📺 Latest TV Shows':'🎬 Latest Movies';
+    document.getElementById('yearF').value='';document.getElementById('sortF').value='desc';
+    
+    // Если это первый запуск, мы сразу рендерим локальные данные для скорости
+    if(!bypassInit) initLocal(t);
+    
+    // Затем в фоне пытаемся подтянуть свежие данные с сервера
+    const type=t==='tv'?'tv':'movie';
+    const j=await smartFetch(`${API}/${type}?direction=desc&page=1`);
+    const p=parseAPI(j);
+    
+    if(p&&p.items.length){
+        apiOk=true;
+        lastPage=p.lastPage;
+        renderGrid(p.items,type); // Перезаписываем свежими
+        renderHero(p.items[0],type);
+    } else {
+        apiOk=false;
+    }
+}
+
+async function applyFilters(){
+page=1;const yr=document.getElementById('yearF').value;const dir=document.getElementById('sortF').value;
+const type=tab==='tv'?'tv':'movie';
+document.getElementById('grid').innerHTML=''; // clear
+if(apiOk){let url=`${API}/${type}?direction=${dir}&page=1`;if(yr)url+=`&year=${yr}`;
+const j=await smartFetch(url);const p=parseAPI(j);if(p&&p.items.length){lastPage=p.lastPage;renderGrid(p.items,type);return}}
+let d=tab==='tv'?[...FB_T]:[...FB_M];if(yr)d=d.filter(x=>String(x.y)===yr);
+if(dir==='asc')d.sort((a,b)=>(a.y||0)-(b.y||0));else d.sort((a,b)=>(b.y||0)-(a.y||0));
+lastPage=1;renderGrid(d,type)}
+
+async function loadMore(){
+page++;const btn=document.getElementById('moreBtn');btn.disabled=true;btn.textContent='Loading...';
+const type=tab==='tv'?'tv':'movie';const yr=document.getElementById('yearF').value;const dir=document.getElementById('sortF').value;
+if(apiOk){let url=`${API}/${type}?direction=${dir}&page=${page}`;if(yr)url+=`&year=${yr}`;
+const j=await smartFetch(url);const p=parseAPI(j);
+if(p&&p.items.length){lastPage=p.lastPage;renderGrid(p.items,type,true)}
+else{document.getElementById('moreW').style.display='none';toast('No more content')}}
+else document.getElementById('moreW').style.display='none';
+btn.disabled=false;btn.textContent='Load More'}
+
+function goHome(){switchTab('movies', true);window.scrollTo({top:0,behavior:'smooth'})}
+
+function openPlayer(tmdb,type,title){
+P={id:tmdb,type,title,s:1,e:1,si:0};document.getElementById('pTitle').textContent=title;
+const tc=document.getElementById('tvCtrls');
+if(type==='tv'){tc.style.display='';document.getElementById('sSel').innerHTML=Array.from({length:20},(_,i)=>`<option value="${i+1}">S${i+1}</option>`).join('');document.getElementById('eSel').innerHTML=Array.from({length:30},(_,i)=>`<option value="${i+1}">E${i+1}</option>`).join('')}
+else tc.style.display='none';
+document.getElementById('srvList').innerHTML='<span>Server:</span>'+SERVERS.map((s,i)=>`<button class="srv${i===0?' act':''}" onclick="switchSrv(${i})">${s.n}</button>`).join('');
+switchSrv(0);document.getElementById('playerModal').classList.add('act');document.body.style.overflow='hidden'}
+
+function switchSrv(i){P.si=i;document.querySelectorAll('.srv').forEach((b,j)=>b.classList.toggle('act',j===i));updateFrame()}
+function updateFrame(){if(P.type==='tv'){P.s=+document.getElementById('sSel').value||1;P.e=+document.getElementById('eSel').value||1}document.getElementById('pFrame').src=SERVERS[P.si].u(P.id,P.type,P.s,P.e)}
+function closePlayer(){document.getElementById('playerModal').classList.remove('act');document.getElementById('pFrame').src='';document.body.style.overflow=''}
+
+function openSearch(){document.getElementById('searchModal').classList.add('act');document.getElementById('sInput').value='';document.getElementById('sResults').innerHTML='<p class="s-hint">Напишите название на английском...</p>';setTimeout(()=>document.getElementById('sInput').focus(),100)}
+function closeSearch(){document.getElementById('searchModal').classList.remove('act')}
+function setSearchType(t){searchType=t;document.getElementById('stM').classList.toggle('act',t==='movie');document.getElementById('stT').classList.toggle('act',t==='tv');const q=document.getElementById('sInput').value;if(q.length>=3)doSearch(q)}
+function doSearch(q){
+clearTimeout(searchTO);const res=document.getElementById('sResults');
+if(q.length<3){res.innerHTML='<p class="s-hint">Напишите название на английском...</p>';return}
+res.innerHTML='<p class="s-hint">🔍 Searching...</p>';
+searchTO=setTimeout(async()=>{
+let items=[];const type=searchType==='tv'?'tv':'movie';
+const j=await smartFetch(`${API}/${type}?query=${encodeURIComponent(q)}`);const p=parseAPI(j);
+if(p&&p.items.length)items=p.items;
+if(!items.length){const pool=searchType==='tv'?FB_T:FB_M;items=pool.filter(d=>(d.t||'').toLowerCase().includes(q.toLowerCase()))}
+if(!items.length){res.innerHTML='<p class="s-hint">No results found.</p>';return}
+res.innerHTML=items.slice(0,15).map(item=>{const n=norm(item);n.type=type;const[c1,c2]=colors(n.title);
+return`<div class="sr" onclick="closeSearch();openPlayer('${n.tmdb}','${type}','${escA(n.title)}')">
+<div class="sr-poster" style="background:linear-gradient(135deg,${c1},${c2})">
+${n.imdb?`<img src="${poster(n.imdb)}" alt="" onload="this.style.opacity=1" onerror="this.remove()" style="opacity:0;transition:.3s">`:''}
+<span class="sr-l">${n.title.charAt(0)}</span></div>
+<div class="sr-info"><h4>${esc(n.title)}</h4><p>${n.year||''} · ${type==='movie'?'Movie':'TV Show'}</p></div></div>`}).join('')},400)}
+
+function openDonate(){document.getElementById('donateModal').classList.add('act');document.body.style.overflow='hidden'}
+function closeDonate(){document.getElementById('donateModal').classList.remove('act');document.body.style.overflow=''}
+
+document.getElementById('grid').addEventListener('click',e=>{const c=e.target.closest('.card');if(!c)return;openPlayer(c.dataset.tmdb,c.dataset.type,c.dataset.title)});
+document.getElementById('sInput').addEventListener('input',e=>doSearch(e.target.value));
+['playerModal','searchModal','donateModal'].forEach(id=>{document.getElementById(id).addEventListener('click',e=>{if(e.target===e.currentTarget){id==='playerModal'?closePlayer():id==='searchModal'?closeSearch():closeDonate()}})});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closePlayer();closeSearch();closeDonate()}if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch()}});
+
+// Инициализация
+(function(){
+    const sel=document.getElementById('yearF');for(let y=2027;y>=1990;y--)sel.innerHTML+=`<option value="${y}">${y}</option>`;
+    
+    // Сначала загружаем локальные данные для скорости
+    initLocal('movies');
+    
+    // Даем анимации проиграться, затем прячем лоадер и делаем API запрос в фоне
+    setTimeout(() => {
+        hideLoader();
+        switchTab('movies', true); // true = пропустить локальную инициализацию, сделать только API
+    }, 1500); // 1.5 секунды на красивую анимацию букв
+})();
+</script>
+</body>
+</html>
