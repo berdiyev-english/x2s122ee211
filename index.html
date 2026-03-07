@@ -388,21 +388,30 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-const API='https://moviesapi.club/api/discover';
-const EMBED='https://moviesapi.club';
-const PX=[u=>'https://corsproxy.io/?url='+encodeURIComponent(u),u=>'https://api.allorigins.win/raw?url='+encodeURIComponent(u)];
-const SERVERS=[
-{n:'MoviesAPI ⭐',u:(id,t,s,e)=>t==='tv'?`${EMBED}/tv/${id}-${s}-${e}`:`${EMBED}/movie/${id}`},
-{n:'VidSrc',u:(id,t,s,e)=>t==='tv'?`https://vidsrc.cc/v2/embed/tv/${id}/${s}/${e}`:`https://vidsrc.cc/v2/embed/movie/${id}`},
-{n:'Embed.su',u:(id,t,s,e)=>t==='tv'?`https://embed.su/embed/tv/${id}/${s}/${e}`:`https://embed.su/embed/movie/${id}`},
-{n:'SuperEmbed',u:id=>`https://multiembed.mov/?video_id=${id}&tmdb=1`},
-{n:'2Embed',u:id=>`https://www.2embed.cc/embed/${id}`},
-{n:'SmashyStream',u:id=>`https://embed.smashystream.com/playere.php?tmdb=${id}`},
-{n:'VidLink',u:(id,t,s,e)=>t==='tv'?`https://vidlink.pro/tv/${id}/${s}/${e}`:`https://vidlink.pro/movie/${id}`},
+// ==================== CONFIG ====================
+const API = 'https://moviesapi.to/api/discover'; // Домен именно для API базы
+const EMBED = 'https://moviesapi.club';          // Домен для плееров
+
+// Добавил 3 надежных прокси, чтобы если упадет один, сработал другой
+const PX = [
+    u => 'https://corsproxy.io/?url=' + encodeURIComponent(u),
+    u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u),
+    u => 'https://thingproxy.freeboard.io/fetch/' + u
 ];
+
+const SERVERS = [
+    {n:'MoviesAPI ⭐', u:(id,t,s,e)=>t==='tv'?`${EMBED}/tv/${id}-${s}-${e}`:`${EMBED}/movie/${id}`},
+    {n:'VidSrc', u:(id,t,s,e)=>t==='tv'?`https://vidsrc.cc/v2/embed/tv/${id}/${s}/${e}`:`https://vidsrc.cc/v2/embed/movie/${id}`},
+    {n:'Embed.su', u:(id,t,s,e)=>t==='tv'?`https://embed.su/embed/tv/${id}/${s}/${e}`:`https://embed.su/embed/movie/${id}`},
+    {n:'SuperEmbed', u:id=>`https://multiembed.mov/?video_id=${id}&tmdb=1`},
+    {n:'2Embed', u:id=>`https://www.2embed.cc/embed/${id}`},
+    {n:'SmashyStream', u:id=>`https://embed.smashystream.com/playere.php?tmdb=${id}`},
+    {n:'VidLink', u:(id,t,s,e)=>t==='tv'?`https://vidlink.pro/tv/${id}/${s}/${e}`:`https://vidlink.pro/movie/${id}`},
+];
+
 const PAL=[['#667eea','#764ba2'],['#f093fb','#f5576c'],['#4facfe','#00f2fe'],['#43e97b','#38f9d7'],['#fa709a','#fee140'],['#a18cd1','#fbc2eb'],['#fccb90','#d57eeb'],['#ff9a9e','#fad0c4'],['#a1c4fd','#c2e9fb'],['#d4fc79','#96e6a1'],['#fbc2eb','#a6c1ee'],['#e0c3fc','#8ec5fc'],['#f5576c','#ff6b6b'],['#c471f5','#fa71cd'],['#48c6ef','#6f86d6'],['#accbee','#e7f0fd'],['#e9defa','#fbfcdb'],['#667eea','#43e97b'],['#feada6','#f5efef'],['#fdcbf1','#e6dee9']];
 
-// Встроенные данные на случай, если API недоступно
+// Fallback data
 const FB_M=[{t:"Cold Storage",i:"tt8879928",m:696393,y:2026,q:"HD"},{t:"Scream 7",i:"tt27047903",m:1159559,y:2026,q:"TS"},{t:"War Machine",i:"tt15940132",m:1265609,y:2026,q:"HD"},{t:"The Moment",i:"tt35524793",m:1422562,y:2026,q:"HD"},{t:"Whistle",i:"tt29550683",m:1193501,y:2026,q:"HD"},{t:"Shelter",i:"tt32357218",m:1290821,y:2026,q:"HD"},{t:"GOAT",i:"tt27613895",m:1297842,y:2026,q:"TS"},{t:"28 Years Later: The Bone Temple",i:"tt32141377",m:1272837,y:2026,q:"HD"},{t:"Return to Silent Hill",i:"tt22868010",m:680493,y:2026,q:"HD"},{t:"Mercy",i:"tt31050594",m:1236153,y:2026,q:"HD"},{t:"Hellfire",i:"tt14507394",m:1088434,y:2026,q:"HD"},{t:"Primate",i:"tt33028778",m:1315303,y:2026,q:"HD"}];
 const FB_T=[{t:"The Pitt",i:"tt31938062",m:250307,q:"HD"},{t:"Hijack",i:"tt19854762",m:198102,q:"HD"},{t:"ONE PIECE",i:"tt11737520",m:111110,q:"HD"},{t:"The Rookie",i:"tt7587890",m:79744,q:"HD"},{t:"Bridgerton",i:"tt8740790",m:91239,q:"HD"},{t:"A Knight of the Seven Kingdoms",i:"tt27497448",m:224372,q:"HD"},{t:"Spartacus: House of Ashur",i:"tt29921437",m:240459,q:"HD"},{t:"Wonder Man",i:"tt21066182",m:198178,q:"HD"},{t:"Fallout",i:"tt12637874",m:106379,q:"HD"},{t:"Cross",i:"tt11794812",m:213306,q:"HD"}];
 
@@ -420,13 +429,43 @@ function poster(imdb){return`https://images.metahub.space/poster/medium/${imdb}/
 function bg(imdb){return`https://images.metahub.space/background/medium/${imdb}/img`}
 function norm(item){return{title:item.t||item.orig_title||item.title||'',imdb:item.i||item.imdb_id||'',tmdb:item.m||item.tmdbid||item.id||'',year:item.y||item.year||'',quality:item.q||item.quality||item.Quality||'HD',type:item.type||tab}}
 
-async function smartFetch(url){
-try{const c=new AbortController();const t=setTimeout(()=>c.abort(),5000);const r=await fetch(url,{signal:c.signal});clearTimeout(t);if(r.ok)return r.json()}catch(e){}
-for(const px of PX){try{const c=new AbortController();const t=setTimeout(()=>c.abort(),7000);const r=await fetch(px(url),{signal:c.signal});clearTimeout(t);if(r.ok)return r.json()}catch(e){}}
-return null}
+// УЛУЧШЕННАЯ ЗАГРУЗКА
+async function smartFetch(url) {
+    // 1. Пробуем напрямую
+    try {
+        const c = new AbortController();
+        const t = setTimeout(() => c.abort(), 3500); // Ждем 3.5 сек
+        const r = await fetch(url, { signal: c.signal });
+        clearTimeout(t);
+        if (r.ok) return await r.json();
+    } catch(e) {}
+    
+    // 2. Если напрямую нельзя (CORS), пробуем через цепочку прокси
+    for (const px of PX) {
+        try {
+            const c = new AbortController();
+            const t = setTimeout(() => c.abort(), 6000);
+            const r = await fetch(px(url), { signal: c.signal });
+            clearTimeout(t);
+            if (r.ok) return await r.json();
+        } catch(e) {}
+    }
+    return null;
+}
 
-function parseAPI(j){if(!j)return null;let it=Array.isArray(j.data)?j.data:Array.isArray(j.result)?j.result:[];return{items:it,lastPage:j.last_page||1}}
+// УЛУЧШЕННЫЙ ПАРСЕР
+function parseAPI(j) {
+    if (!j) return null;
+    let it = [];
+    if (Array.isArray(j.data)) it = j.data;
+    else if (Array.isArray(j.result)) it = j.result;
+    else if (j.data && Array.isArray(j.data.movies)) it = j.data.movies;
+    else if (j.data && Array.isArray(j.data.shows)) it = j.data.shows;
+    
+    return { items: it, lastPage: j.last_page || j.totalPages || 1 };
+}
 
+// ==================== ОСТАВЬТЕ ЭТУ СТРОКУ И ВСЁ ЧТО НИЖЕ БЕЗ ИЗМЕНЕНИЙ ====================
 function cardHTML(item,mt){
 const n=norm(item);const[c1,c2]=colors(n.title);const l=n.title.charAt(0).toUpperCase();const isTV=mt==='tv';
 return`<div class="card" data-tmdb="${n.tmdb}" data-type="${isTV?'tv':'movie'}" data-title="${escA(n.title)}">
