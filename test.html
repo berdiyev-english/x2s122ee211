@@ -376,77 +376,6 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
 }
 @media(max-width:400px){.grid{grid-template-columns:repeat(2,1fr);gap:8px}.card-title{font-size:11px}}
 @media(max-width:320px){.grid{grid-template-columns:1fr}}
-
-/* ===== VPN OVERLAY ===== */
-#vpn-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  backdrop-filter: blur(10px);
-}
-.vpn-box {
-  background: #1a1a2e;
-  border: 1px solid #667eea;
-  border-radius: 20px;
-  padding: 40px;
-  text-align: center;
-  max-width: 400px;
-  width: 90%;
-}
-.vpn-icon {
-  font-size: 60px;
-  margin-bottom: 20px;
-}
-.vpn-box h2 {
-  color: #fff;
-  margin-bottom: 10px;
-  font-size: 22px;
-}
-.vpn-box p {
-  color: #aaa;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-.vpn-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 25px;
-}
-.vpn-list p {
-  color: #fff;
-  margin: 0 0 5px 0;
-}
-.vpn-list a {
-  background: #2a2a4e;
-  color: #667eea;
-  padding: 10px 15px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: background 0.2s;
-  display: block;
-}
-.vpn-list a:hover {
-  background: #3a3a6e;
-}
-.vpn-box button {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 100%;
-  transition: opacity 0.2s;
-}
-.vpn-box button:hover {
-  opacity: 0.85;
-}
 </style>
 </head>
 <body>
@@ -582,7 +511,14 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
       <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
   </div>
-  <div class="p-frame"><iframe id="pFrame" allowfullscreen allow="autoplay;encrypted-media;picture-in-picture;fullscreen"></iframe></div>
+  <div class="p-frame"><iframe 
+  id="pFrame" 
+  allowfullscreen 
+  allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; web-share"
+  sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation"
+  referrerpolicy="no-referrer-when-downgrade"
+  loading="lazy"
+></iframe></div>
   <!-- DONATE BANNER В ПЛЕЕРЕ -->
   <div class="p-donate-bar">
     <div class="p-donate-icon">🎁</div>
@@ -798,17 +734,10 @@ const TVMAZE = 'https://api.tvmaze.com';
 const API_TIMEOUT = 3000; // 3 секунды — потом показываем VPN экран
 
 const SERVERS=[
-  {n:'PlayerJS ⭐',u:(id,t,s,e)=>t==='tv'?`httpsplayerjs.io/embed/tv/${id}/${s}/${e}`:`https://playerjs.io/embed/movie/${id}`},
-  {n:'MoviesAPI',u:(id,t,s,e)=>t==='tv'?`https://moviesapi.club/tv/${id}-${s}-${e}`:`https://moviesapi.club/movie/${id}`},
+  {n:'MoviesAPI ⭐',u:(id,t,s,e)=>t==='tv'?`https://moviesapi.club/tv/${id}-${s}-${e}`:`https://moviesapi.club/movie/${id}`},
   {n:'VidSrc Pro',u:(id,t,s,e)=>t==='tv'?`https://vidsrc.pro/embed/tv?tmdb=${id}&season=${s}&episode=${e}`:`https://vidsrc.pro/embed/movie?tmdb=${id}`},
-  {n:'VidSrc.cc',u:(id,t,s,e)=>t==='tv'?`https://vidsrc.cc/v2/embed/tv/${id}/${s}/${e}`:`https://vidsrc.cc/v2/embed/movie/${id}`},
   {n:'AutoEmbed',u:(id,t,s,e)=>t==='tv'?`https://autoembed.co/tv/tmdb/${id}-${s}-${e}`:`https://autoembed.co/movie/tmdb/${id}`},
-  {n:'Embed.su',u:(id,t,s,e)=>t==='tv'?`https://embed.su/embed/tv/${id}/${s}/${e}`:`https://embed.su/embed/movie/${id}`},
   {n:'2Embed',u:(id,t,s,e)=>t==='tv'?`https://www.2embed.skin/embedtv/${id}&s=${s}&e=${e}`:`https://www.2embed.skin/embed/${id}`},
-  {n:'VidLink',u:(id,t,s,e)=>t==='tv'?`https://vidlink.pro/tv/${id}/${s}/${e}`:`https://vidlink.pro/movie/${id}`},
-  {n:'NontonGo',u:(id,t,s,e)=>t==='tv'?`https://www.nontongo.win/embed/tv/${id}/${s}/${e}`:`https://www.nontongo.win/embed/movie/${id}`},
-  {n:'SuperEmbed',u:(id)=>`https://multiembed.mov/?video_id=${id}&tmdb=1`},
-  {n:'SmashyStream',u:(id)=>`https://embed.smashystream.com/playere.php?tmdb=${id}`},
 ];
 
 const API_SOURCES=[{
@@ -827,21 +756,10 @@ const API_SOURCES=[{
   }
 }];
 
-// ==================== ПРОКСИ МАССИВ + СОСТОЯНИЕ ====================
 const PX=[
   u=>`https://corsproxy.io/?url=${encodeURIComponent(u)}`,
   u=>`https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-  u=>`https://thingproxy.freeboard.io/fetch/${u}`,
-  u=>`https://api.codetabs.com/v1/proxy?quest=${u}`,
-  u=>`https://corsproxy.org/?${encodeURIComponent(u)}`,
-  u=>`https://proxy.cors.sh/${u}`,
-  u=>`https://yacdn.org/proxy/${u}`,
-  u=>`https://crossorigin.me/${u}`,
 ];
-
-// Состояние прокси
-let currentProxyIndex = 0;
-const proxyStatus = new Array(PX.length).fill(true);
 
 const PAL=[['#667eea','#764ba2'],['#f093fb','#f5576c'],['#4facfe','#00f2fe'],['#43e97b','#38f9d7'],['#fa709a','#fee140'],['#a18cd1','#fbc2eb'],['#fccb90','#d57eeb'],['#ff9a9e','#fad0c4'],['#a1c4fd','#c2e9fb'],['#d4fc79','#96e6a1'],['#fbc2eb','#a6c1ee'],['#e0c3fc','#8ec5fc'],['#f5576c','#ff6b6b'],['#c471f5','#fa71cd'],['#48c6ef','#6f86d6'],['#accbee','#e7f0fd'],['#e9defa','#fbfcdb'],['#667eea','#43e97b'],['#feada6','#f5efef'],['#fdcbf1','#e6dee9']];
 
@@ -894,129 +812,6 @@ function skipVpn(){
   document.getElementById('vpnScreen').classList.remove('show');
   hideLoader();
   toast('Контент может не загрузиться без VPN');
-}
-
-// ==================== SMART FETCH С РОТАЦИЕЙ ПРОКСИ ====================
-async function smartFetch(url, attempt = 0) {
-  if (attempt >= PX.length) {
-    showVpnScreen();
-    throw new Error('Все прокси недоступны');
-  }
-
-  // Ищем следующий рабочий прокси
-  let proxyIdx = currentProxyIndex;
-  let tried = 0;
-  while (!proxyStatus[proxyIdx] && tried < PX.length) {
-    proxyIdx = (proxyIdx + 1) % PX.length;
-    tried++;
-  }
-
-  const proxyUrl = PX[proxyIdx](url);
-
-  try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), API_TIMEOUT);
-
-    const res = await fetch(proxyUrl, {
-      signal: controller.signal,
-      headers: {
-        'Accept': 'application/json',
-        'x-requested-with': 'XMLHttpRequest'
-      }
-    });
-
-    clearTimeout(timeout);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-    const data = await res.json();
-
-    // Запоминаем рабочий прокси
-    currentProxyIndex = proxyIdx;
-    proxyStatus[proxyIdx] = true;
-
-    return data;
-
-  } catch (err) {
-    console.warn(`❌ Прокси #${proxyIdx} не работает:`, err.message);
-
-    // Помечаем как нерабочий
-    proxyStatus[proxyIdx] = false;
-
-    // Пробуем следующий
-    currentProxyIndex = (proxyIdx + 1) % PX.length;
-    return smartFetch(url, attempt + 1);
-  }
-}
-
-// ==================== ПРОВЕРКА ПРОКСИ ПРИ СТАРТЕ ====================
-async function checkProxies() {
-  const testUrl = API_SOURCES[0].movies(1, 'desc', '');
-
-  const checks = PX.map(async (proxy, idx) => {
-    try {
-      const controller = new AbortController();
-      setTimeout(() => controller.abort(), 5000);
-      const res = await fetch(proxy(testUrl), { signal: controller.signal });
-      proxyStatus[idx] = res.ok;
-    } catch {
-      proxyStatus[idx] = false;
-    }
-  });
-
-  await Promise.allSettled(checks);
-
-  const firstWorking = proxyStatus.findIndex(s => s === true);
-  if (firstWorking !== -1) {
-    currentProxyIndex = firstWorking;
-    apiOk = true;
-  } else {
-    apiOk = false;
-    showVpnScreen();
-  }
-}
-
-// ==================== VPN ЭКРАН (ОБНОВЛЁННЫЙ) ====================
-function showVpnScreen(){
-  if(vpnShown)return;
-  vpnShown=true;
-
-  // Удаляем старый если есть
-  const old = document.getElementById('vpn-overlay');
-  if (old) old.remove();
-
-  const overlay = document.createElement('div');
-  overlay.id = 'vpn-overlay';
-  overlay.innerHTML = `
-    <div class="vpn-box">
-      <div class="vpn-icon">🔒</div>
-      <h2>Контент недоступен</h2>
-      <p>API заблокированы в вашем регионе.<br>Попробуйте использовать VPN.</p>
-      <button onclick="retryConnection()">🔄 Попробовать снова</button>
-    </div>
-  `;
-  document.body.appendChild(overlay);
-}
-
-async function retryConnection() {
-  vpnShown = false;
-  const overlay = document.getElementById('vpn-overlay');
-  if (overlay) overlay.remove();
-
-  // Сбрасываем все прокси
-  proxyStatus.fill(true);
-  currentProxyIndex = 0;
-
-  await checkProxies();
-
-  if (apiOk) {
-    toast('✅ Соединение восстановлено!');
-    // Вызываем функцию загрузки контента
-    if (typeof switchTab === 'function') switchTab(tab, false);
-  } else {
-    toast('❌ Прокси всё ещё недоступны');
-    vpnShown = false;
-    showVpnScreen();
-  }
 }
 
 // ==================== PWA ====================
@@ -1158,6 +953,12 @@ async function getTvDataByName(name){
 }
 
 // ==================== FETCH ====================
+async function smartFetch(url,timeout=2000){
+  try{const c=new AbortController();const t=setTimeout(()=>c.abort(),timeout);const r=await fetch(url,{signal:c.signal});clearTimeout(t);if(r.ok)return await r.json()}catch(e){}
+  for(const px of PX){try{const c=new AbortController();const t=setTimeout(()=>c.abort(),3000);const r=await fetch(px(url),{signal:c.signal});clearTimeout(t);if(r.ok)return await r.json()}catch(e){}}
+  return null;
+}
+
 async function fetchFromAnySrc(type,pg=1,dir='desc',yr=''){
   setApiLoading();
   const start=Date.now();
@@ -1165,7 +966,7 @@ async function fetchFromAnySrc(type,pg=1,dir='desc',yr=''){
   for(const src of API_SOURCES){
     try{
       const url=type==='tv'?src.tv(pg,dir,yr):src.movies(pg,dir,yr);
-      const j=await smartFetch(url); // ← используем smartFetch без таймаута (он внутри)
+      const j=await smartFetch(url,API_TIMEOUT);
       if(!j)continue;
       const parsed=src.parse(j);
       if(parsed&&parsed.items&&parsed.items.length>0){
@@ -1192,7 +993,7 @@ function showNoContentMessage(){
     <div style="font-size:48px;margin-bottom:16px">🔒</div>
     <p style="font-size:18px;font-weight:700;margin-bottom:8px">Контент недоступен</p>
     <p style="color:var(--text2);font-size:14px;margin-bottom:20px">Сервисы с фильмами заблокированы в России. Включи VPN и попробуй снова.</p>
-    <button onclick="retryConnection()" style="padding:12px 28px;border-radius:10px;background:var(--accent);color:#fff;border:none;font-size:14px;font-weight:700;cursor:pointer">🔄 Попробовать снова</button>
+    <button onclick="retryAfterVpn()" style="padding:12px 28px;border-radius:10px;background:var(--accent);color:#fff;border:none;font-size:14px;font-weight:700;cursor:pointer">🔄 Попробовать снова</button>
   </div>`;
 }
 
@@ -1201,8 +1002,8 @@ async function searchFromAnySrc(query,type='both'){
   for(const src of API_SOURCES){
     try{
       const fetches=[];
-      if(type==='movie'||type==='both')fetches.push(smartFetch(src.searchMovie(query)).then(j=>({j,_type:'movie',src})));
-      if(type==='tv'||type==='both')fetches.push(smartFetch(src.searchTv(query)).then(j=>({j,_type:'tv',src})));
+      if(type==='movie'||type==='both')fetches.push(smartFetch(src.searchMovie(query),3000).then(j=>({j,_type:'movie',src})));
+      if(type==='tv'||type==='both')fetches.push(smartFetch(src.searchTv(query),3000).then(j=>({j,_type:'tv',src})));
       const results=await Promise.allSettled(fetches);
       for(const r of results){if(r.status==='fulfilled'&&r.value?.j){const parsed=r.value.src.parse(r.value.j);if(parsed?.items?.length)allResults=allResults.concat(parsed.items.map(i=>({...i,_searchType:r.value._type})))}}
       if(allResults.length>0)break;
@@ -1456,10 +1257,6 @@ function renderTvBlock(tvData,tmdb){
   const watchedS=hi?hi.s||1:1;const watchedE=hi?hi.e||1:1;
   MP.s=watchedS;MP.e=watchedE;
   const totalEps=tvData.eps.reduce((a,b)=>a+b,0);
-  document.getElementById('mpTvStats').innerHTML=`
-    <div class="mp-tv-stat"><span class="mp-tv-stat-icon">📺</span><div><div class="mp-tv-stat-val">${tvData.seasons}</div><div class="mp-tv-stat-label">Сезонов</div></div></div>
-    <div class="mp-tv-stat"><span class="mp-tv-stat-icon">🎬</span><div><div class="mp-tv-stat-val">${totalEps}</div><div class="mp-tv-stat-label">Серий</div></div></div>
-    <div class="mp-tv-stat"><span class="mp-tv-stat-icon">${tvData.status==='ongoing'?'🟢':'⚫'}</span><div><div class="mp-tv-stat-val" style="font-size:13px">${tvData.status==='ongoing'?'Выходит':'Завершён'}</div><div class="mp-tv-stat-label">Статус</div></div></div>`;
   document.getElementById('mpSeasonsTabs').innerHTML=Array.from({length:tvData.seasons},(_,i)=>
     `<button class="mp-season-tab${i+1===watchedS?' act':''}" onclick="selectSeason(${i+1})">${i+1} сезон</button>`
   ).join('');
@@ -1495,12 +1292,20 @@ function startWatching(){openPlayer(MP.id,MP.type,MP.title,MP.si,MP.s,MP.e,true)
 function continueWatching(){openPlayer(MP.id,MP.type,MP.title,MP.si,MP.s,MP.e,false)}
 
 // ==================== PLAYER ====================
+
 function openPlayer(tmdb,type,title,si,s,e,fromStart){
   P={id:tmdb,type,title,si:si||0,s:s||1,e:e||1};
   const hi=getHistoryItem(tmdb);
   saveToHistory({tmdb:String(tmdb),type,title,imdb:MP.imdb||'',year:MP.year||'',quality:MP.quality||'HD',s:s||1,e:e||1,progress:fromStart?0:(hi?hi.progress||0:0)});
   document.getElementById('pTitle').textContent=title+(type==='tv'?` — S${s||1} E${e||1}`:'');
-  document.getElementById('pFrame').src=SERVERS[si||0].u(tmdb,type,s||1,e||1);
+
+  // Сброс iframe перед загрузкой (Fix для PWA)
+  const iframe=document.getElementById('pFrame');
+  iframe.src='about:blank';
+  setTimeout(()=>{
+    iframe.src=SERVERS[si||0].u(tmdb,type,s||1,e||1);
+  },150);
+
   document.getElementById('playerModal').classList.add('act');
   document.body.style.overflow='hidden';
   clearInterval(progressInterval);watchStartTime=Date.now();
@@ -1595,15 +1400,11 @@ document.addEventListener('keydown',e=>{
 });
 
 // ==================== INIT ====================
-(async function(){
+(function(){
   const sel=document.getElementById('yearF');
   for(let y=2027;y>=1990;y--)sel.innerHTML+=`<option value="${y}">${y}</option>`;
   updateHistoryBadge();
   initPwa();
-  
-  // Проверка прокси при старте
-  await checkProxies();
-  
   // Запускаем загрузку сразу — только из API
   setTimeout(()=>{
     hideLoader();
