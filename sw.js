@@ -1,4 +1,4 @@
-const CACHE_NAME = 'befilm-cache-v2';
+const CACHE_NAME = 'befilm-cache-v3';
 
 // Указываем, какие ваши файлы нужно сохранить в кэш телефона
 const urlsToCache = [
