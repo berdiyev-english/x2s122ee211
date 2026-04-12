@@ -40,7 +40,7 @@ a{text-decoration:none;color:inherit}img{display:block}button{font-family:inheri
 .premium-text{font-size:clamp(40px,8vw,64px);font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.05);position:relative;user-select:none}
 .premium-text::before{content:attr(data-text);position:absolute;top:0;left:0;width:0%;height:100%;color:transparent;background:linear-gradient(135deg,var(--accent2),var(--red));-webkit-background-clip:text;background-clip:text;white-space:nowrap;overflow:hidden;animation:textFill 1.5s cubic-bezier(.86,0,.07,1) forwards}
 @keyframes textFill{0%{width:0%}100%{width:100%}}
-.loader-sub{color:var(--text2);font-size:13px;margin-top:20px;letter-spacing:1px;text-transform:uppercase;opacity:0;animation:fadeUp .4s .8s forwards}
+.loader-sub{color:var(--text2);font-size:13px;margin-top:20px;letter-spacing:1px;text-transform:uppercase;opacity:0;animation:fadeUp .4s .1s forwards}
 @keyframes fadeUp{to{opacity:1}}
 
 /* VPN SCREEN */
@@ -383,7 +383,7 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
 <!-- LOADER -->
 <div id="loader">
   <div class="premium-text" data-text="Befilm">Befilm</div>
-  <p class="loader-sub">Загружаем контент...</p>
+  <p class="loader-sub">ДЛЯ СТАБИЛЬНОЙ РАБОТЫ ИСПОЛЬЗУЙТЕ VPN.</p>
 </div>
 
 <!-- VPN SCREEN -->
@@ -391,11 +391,6 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
   <div class="vpn-icon">🔒</div>
   <div class="vpn-title">Нужен VPN для загрузки</div>
   <p class="vpn-sub">Сервисы с фильмами недоступны в России без VPN. Это займёт всего минуту — и откроет доступ к тысячам фильмов на английском.</p>
-  <div class="vpn-steps">
-    <div class="vpn-step"><span class="vpn-step-num">1</span>Скачай любой VPN</div>
-    <div class="vpn-step"><span class="vpn-step-num">2</span>Подключись к любому серверу (США, Германия)</div>
-    <div class="vpn-step"><span class="vpn-step-num">3</span>Вернись на сайт и нажми кнопку ниже</div>
-  </div>
   <button class="vpn-retry" onclick="retryAfterVpn()">🔄 Попробовать снова</button>
   <div class="vpn-skip" onclick="skipVpn()">Продолжить без VPN (контент может не загрузиться)</div>
 </div>
@@ -439,8 +434,8 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
   <div class="hero-inner">
     <div class="hero-text" id="heroText">
       <div class="hero-badge">✨ Free Streaming</div>
-      <h1>Welcome to Befilm</h1>
-      <p style="color:var(--text2);font-size:15px;line-height:1.6">Stream movies and TV shows in English for free.</p>
+      <h1>Добро пожаловать в BeFilm</h1>
+      <p style="color:var(--text2);font-size:15px;line-height:1.6">Смотрите фильмы и сериалы на английском языке бесплатно.</p>
     </div>
     <div class="hero-poster" id="heroPoster" style="display:none"></div>
   </div>
@@ -449,7 +444,7 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
 <main>
 <div class="container">
   <div class="section-bar">
-    <h2 class="section-title" id="secTitle">🎬 Latest Movies</h2>
+    <h2 class="section-title" id="secTitle">🎬 Последние фильмы</h2>
     <span id="apiStatusBadge"></span>
     <select class="filter-sel" id="yearF" onchange="applyFilters()"><option value="">All Years</option></select>
     <select class="filter-sel" id="sortF" onchange="applyFilters()">
@@ -522,7 +517,7 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
     <div class="p-donate-icon">🎁</div>
     <div class="p-donate-text">
       <strong>Нравится Befilm? Поддержи проект!</strong>
-      <span>Я — аспирант пед. наук, делаю это в одиночку. Каждый донат помогает держать сайт живым 🙏</span>
+      <span>Я делаю этот проект в одиночку. Каждый донат помогает держать сайт живым 🙏</span>
     </div>
     <a href="https://pay.cloudtips.ru/p/8f56d7d3" target="_blank" class="p-donate-btn">
       🎁 Поддержать
@@ -589,7 +584,6 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
     </button>
     <div class="donate-gift-icon">🎁</div>
     <h3>Поддержи Befilm 🙏</h3>
-    <p>Привет! Я Абдуррахим — преподаватель английского языка и аспирант педагогических наук. Befilm — мой личный проект, который я делаю полностью один в свободное от работы время.</p>
     <div class="donate-author">
       <div class="donate-author-img">
         <img src="https://static.tildacdn.info/tild6137-3239-4731-b932-343437323234/__1.jpg" alt="Абдуррахим Бердиев">
@@ -603,14 +597,8 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
   <div class="donate-body">
     <div class="donate-story">
       <p>💡 Я создал Befilm чтобы помочь людям учить английский через любимые фильмы и сериалы — бесплатно, без рекламы-спама и регистрации.</p>
-      <p>🛠 Каждую функцию я пишу сам: поиск, история просмотра, мобильная версия, PWA. Это занимает сотни часов работы.</p>
+      <p>🛠 Каждую функцию я пишу сам: поиск, история просмотра, мобильная версия. Это занимает сотни часов работы.</p>
       <p>❤️ Если сайт был тебе полезен — любая сумма поможет оплатить хостинг и мотивирует делать Befilm лучше.</p>
-    </div>
-    <div class="donate-features">
-      <div class="donate-feat"><span class="donate-feat-icon" style="background:rgba(124,58,237,.12)">🎬</span>Новые фильмы и сериалы каждую неделю</div>
-      <div class="donate-feat"><span class="donate-feat-icon" style="background:rgba(16,185,129,.12)">⚡</span>Стабильная работа и быстрые серверы</div>
-      <div class="donate-feat"><span class="donate-feat-icon" style="background:rgba(250,204,21,.12)">🛠</span>Новые функции и улучшения</div>
-      <div class="donate-feat"><span class="donate-feat-icon" style="background:rgba(239,68,68,.12)">🇷🇺</span>Бесплатно для всех навсегда</div>
     </div>
     <a href="https://pay.cloudtips.ru/p/8f56d7d3" target="_blank" class="donate-big-btn">
       🎁 Поддержать проект
@@ -736,7 +724,7 @@ if('serviceWorker' in navigator){
 
 // ==================== CONFIG ====================
 const TVMAZE = 'https://api.tvmaze.com';
-const API_TIMEOUT = 8000; // 8 секунд — потом показываем VPN экран
+const API_TIMEOUT = 3000; // 3 секунды — потом показываем VPN экран
 
 const SERVERS=[
   {n:'MoviesAPI ⭐',u:(id,t,s,e)=>t==='tv'?`https://moviesapi.club/tv/${id}-${s}-${e}`:`https://moviesapi.club/movie/${id}`},
@@ -909,7 +897,7 @@ function setApiLoading(){
 async function tvmazeFetch(url){
   try{
     const c=new AbortController();
-    const t=setTimeout(()=>c.abort(),6000);
+    const t=setTimeout(()=>c.abort(),2000);
     const r=await fetch(url,{signal:c.signal});
     clearTimeout(t);
     if(r.ok)return await r.json();
@@ -964,9 +952,9 @@ async function getTvDataByName(name){
 }
 
 // ==================== FETCH ====================
-async function smartFetch(url,timeout=6000){
+async function smartFetch(url,timeout=2000){
   try{const c=new AbortController();const t=setTimeout(()=>c.abort(),timeout);const r=await fetch(url,{signal:c.signal});clearTimeout(t);if(r.ok)return await r.json()}catch(e){}
-  for(const px of PX){try{const c=new AbortController();const t=setTimeout(()=>c.abort(),8000);const r=await fetch(px(url),{signal:c.signal});clearTimeout(t);if(r.ok)return await r.json()}catch(e){}}
+  for(const px of PX){try{const c=new AbortController();const t=setTimeout(()=>c.abort(),3000);const r=await fetch(px(url),{signal:c.signal});clearTimeout(t);if(r.ok)return await r.json()}catch(e){}}
   return null;
 }
 
@@ -1013,8 +1001,8 @@ async function searchFromAnySrc(query,type='both'){
   for(const src of API_SOURCES){
     try{
       const fetches=[];
-      if(type==='movie'||type==='both')fetches.push(smartFetch(src.searchMovie(query),6000).then(j=>({j,_type:'movie',src})));
-      if(type==='tv'||type==='both')fetches.push(smartFetch(src.searchTv(query),6000).then(j=>({j,_type:'tv',src})));
+      if(type==='movie'||type==='both')fetches.push(smartFetch(src.searchMovie(query),3000).then(j=>({j,_type:'movie',src})));
+      if(type==='tv'||type==='both')fetches.push(smartFetch(src.searchTv(query),3000).then(j=>({j,_type:'tv',src})));
       const results=await Promise.allSettled(fetches);
       for(const r of results){if(r.status==='fulfilled'&&r.value?.j){const parsed=r.value.src.parse(r.value.j);if(parsed?.items?.length)allResults=allResults.concat(parsed.items.map(i=>({...i,_searchType:r.value._type})))}}
       if(allResults.length>0)break;
@@ -1131,7 +1119,7 @@ function hideLoader(){const l=document.getElementById('loader');if(l){l.classLis
 async function switchTab(t,bypassInit=false){
   tab=t;page=1;
   document.querySelectorAll('.nav-btn,.mnav button[data-t]').forEach(b=>b.classList.toggle('act',b.dataset.t===t));
-  document.getElementById('secTitle').textContent=t==='tv'?'📺 Latest TV Shows':'🎬 Latest Movies';
+  document.getElementById('secTitle').textContent=t==='tv'?'📺 Последние сериалы':'🎬 Последние фильмы';
   document.getElementById('yearF').value='';document.getElementById('sortF').value='desc';
 
   // Сразу показываем загрузку (без локальных данных)
