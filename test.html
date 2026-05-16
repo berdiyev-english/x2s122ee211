@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
+<html lang="ru"><head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -23,7 +21,7 @@
 <meta name="theme-color" content="#08080d">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Befilm","alternateName":"Бифильм","url":"https://befilm.ru","description":"Смотрите фильмы и сериалы на английском языке бесплатно онлайн."}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 <style>
 :root{--bg:#08080d;--bg2:#111118;--bg3:#1a1a24;--surface:#222230;--border:rgba(255,255,255,.06);--accent:#7c3aed;--accent2:#a855f7;--red:#ef4444;--yellow:#facc15;--green:#10b981;--orange:#f59e0b;--text:#f0f0f5;--text2:#71717a;--radius:14px;--hdr:66px}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -350,6 +348,20 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(40px);background:var(--bg3);color:var(--text);padding:12px 24px;border-radius:10px;border:1px solid var(--border);font-size:13px;font-weight:600;z-index:9999;transition:.4s;box-shadow:0 8px 24px rgba(0,0,0,.4);opacity:0}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
+/* GRID LOADER */
+.grid-loader-wrap{grid-column:1/-1;text-align:center;margin-bottom:24px;padding:20px 0}
+.grid-loader-icon{font-size:44px;margin-bottom:14px;display:inline-block;animation:loaderPulse 2s ease-in-out infinite;filter:drop-shadow(0 0 16px rgba(124,58,237,.5));transition:transform .2s,opacity .2s}
+.grid-loader-text{font-size:15px;font-weight:700;color:var(--text);transition:opacity .25s;min-height:22px}
+@keyframes loaderPulse{0%,100%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 12px rgba(124,58,237,.4))}25%{transform:scale(1.15) translateY(-8px);filter:drop-shadow(0 0 24px rgba(168,85,247,.6))}50%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 12px rgba(124,58,237,.4))}75%{transform:scale(1.1) translateY(-4px);filter:drop-shadow(0 0 20px rgba(239,68,68,.4))}}
+/* SKELETON */
+.skeleton-card{pointer-events:none;animation:skeletonFade 1.6s ease-in-out infinite}
+.skeleton-poster{aspect-ratio:2/3;border-radius:var(--radius);background:linear-gradient(90deg,var(--bg2) 25%,var(--surface) 50%,var(--bg2) 75%);background-size:200% 100%;animation:skeletonShimmer 1.4s infinite}
+.skeleton-info{padding:12px 4px}
+.skeleton-title{height:14px;border-radius:6px;background:var(--surface);margin-bottom:8px;width:80%;animation:skeletonShimmer 1.4s infinite}
+.skeleton-yr{height:10px;border-radius:4px;background:var(--bg3);width:40%;animation:skeletonShimmer 1.4s infinite}
+@keyframes skeletonShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes skeletonFade{0%,100%{opacity:1}50%{opacity:.6}}
+
 /* MOBILE */
 @media(max-width:768px){
   .nav,.kbd{display:none}
@@ -377,13 +389,14 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
 @media(max-width:400px){.grid{grid-template-columns:repeat(2,1fr);gap:8px}.card-title{font-size:11px}}
 @media(max-width:320px){.grid{grid-template-columns:1fr}}
 </style>
+<base target="_blank">
 </head>
 <body>
 
 <!-- LOADER -->
 <div id="loader">
-  <div class="premium-text" data-text="Befilm">Befilm</div>
-  <p class="loader-sub">ДЛЯ СТАБИЛЬНОЙ РАБОТЫ ИСПОЛЬЗУЙТЕ VPN.</p>
+  <div class="premium-text" data-text="BEFILM">BEFILM</div>
+  <div class="loader-sub">Loading cinematic experience...</div>
 </div>
 
 <!-- VPN SCREEN -->
@@ -415,29 +428,35 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
   </nav>
   <div class="spacer"></div>
   <button class="icon-btn" onclick="openHistory()" id="historyBtn">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-    <span class="i-badge" id="hBadge"></span>
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span class="i-badge" id="hBadge" style="display: none;"></span>
   </button>
   <button class="icon-btn donate-hdr-btn" onclick="openDonate()">
     🎁 <span>Поддержать</span>
   </button>
   <button class="search-open" onclick="openSearchFlow()">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
     <span class="kbd">⌘K</span>
   </button>
 </div>
 </header>
 
 <section class="hero" id="hero">
-  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-bg ld" id="heroBg" style="background-image: url(&quot;https://images.metahub.space/background/medium/tt36042156/img&quot;);"></div>
   <div class="hero-glow glow1"></div><div class="hero-glow glow2"></div>
   <div class="hero-inner">
     <div class="hero-text" id="heroText">
-      <div class="hero-badge">✨ Free Streaming</div>
-      <h1>Добро пожаловать в BeFilm</h1>
-      <p style="color:var(--text2);font-size:15px;line-height:1.6">Смотрите фильмы и сериалы на английском языке бесплатно.</p>
+    <div class="hero-badge">🎬 Movie · Latest on Befilm</div>
+    <h1>A Marvel Television Special Presentation - The Punisher  One Last Kill</h1>
+    <div class="hero-meta">
+      <span>2026</span>
+      <span class="q-tag q-hd">HD</span>
+      
     </div>
-    <div class="hero-poster" id="heroPoster" style="display:none"></div>
+    <div class="hero-btns">
+      <button class="btn btn-primary" onclick="openMoviePage('1439930','movie','A Marvel Television Special Presentation - The Punisher  One Last Kill','tt36042156','2026','HD')">▶ Watch Now</button>
+    </div></div>
+    <div class="hero-poster" id="heroPoster" style=""><img src="https://images.metahub.space/poster/medium/tt36042156/img" alt="" onerror="this.parentElement.style.display='none'" style="width:100%;height:100%;object-fit:cover"></div>
   </div>
 </section>
 
@@ -445,15 +464,655 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
 <div class="container">
   <div class="section-bar">
     <h2 class="section-title" id="secTitle">🎬 Последние фильмы</h2>
-    <span id="apiStatusBadge"></span>
-    <select class="filter-sel" id="yearF" onchange="applyFilters()"><option value="">All Years</option></select>
+    <span id="apiStatusBadge" class="api-status api-ok"><span class="api-dot"></span>MoviesAPI</span>
+    <select class="filter-sel" id="yearF" onchange="applyFilters()"><option value="">All Years</option><option value="2027">2027</option><option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option></select>
     <select class="filter-sel" id="sortF" onchange="applyFilters()">
       <option value="desc">Newest First</option>
       <option value="asc">Oldest First</option>
     </select>
   </div>
-  <div class="grid" id="grid"></div>
-  <div class="more-wrap" id="moreW" style="display:none">
+  <div class="grid" id="grid"><div class="card" data-tmdb="1439930" data-type="movie" data-title="A Marvel Television Special Presentation - The Punisher  One Last Kill" data-year="2026" data-quality="HD" data-imdb="tt36042156">
+    <div class="card-poster" style="background:linear-gradient(135deg,#f093fb,#f5576c)">
+      <span class="c-letter">A</span>
+      <img src="https://images.metahub.space/poster/medium/tt36042156/img" alt="A Marvel Television Special Presentation - The Punisher  One Last Kill" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">A Marvel Television Special Presentation - The Punisher  One Last Kill</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="931285" data-type="movie" data-title="Mortal Kombat II" data-year="2026" data-quality="TS | €lon" data-imdb="tt17490712">
+    <div class="card-poster" style="background:linear-gradient(135deg,#f093fb,#f5576c)">
+      <span class="c-letter">M</span>
+      <img src="https://images.metahub.space/poster/medium/tt17490712/img" alt="Mortal Kombat II" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-ts">TS</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Mortal Kombat II</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1314481" data-type="movie" data-title="The Devil Wears Prada 2" data-year="2026" data-quality="TS | EaZy" data-imdb="tt33612209">
+    <div class="card-poster" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">
+      <span class="c-letter">T</span>
+      <img src="https://images.metahub.space/poster/medium/tt33612209/img" alt="The Devil Wears Prada 2" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-ts">TS</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">The Devil Wears Prada 2</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1266127" data-type="movie" data-title="Ready or Not  Here I Come" data-year="2026" data-quality="HD" data-imdb="tt33978029">
+    <div class="card-poster" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+      <span class="c-letter">R</span>
+      <img src="https://images.metahub.space/poster/medium/tt33978029/img" alt="Ready or Not  Here I Come" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Ready or Not  Here I Come</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1430077" data-type="movie" data-title="Hokum" data-year="2026" data-quality="CAM" data-imdb="tt35672862">
+    <div class="card-poster" style="background:linear-gradient(135deg,#e9defa,#fbfcdb)">
+      <span class="c-letter">H</span>
+      <img src="https://images.metahub.space/poster/medium/tt35672862/img" alt="Hokum" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Hokum</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1007757" data-type="movie" data-title="Swapped" data-year="2026" data-quality="HD" data-imdb="tt29552248">
+    <div class="card-poster" style="background:linear-gradient(135deg,#fa709a,#fee140)">
+      <span class="c-letter">S</span>
+      <img src="https://images.metahub.space/poster/medium/tt29552248/img" alt="Swapped" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Swapped</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1292415" data-type="movie" data-title="Beast" data-year="2026" data-quality="CAM | EaZy" data-imdb="tt7708226">
+    <div class="card-poster" style="background:linear-gradient(135deg,#accbee,#e7f0fd)">
+      <span class="c-letter">B</span>
+      <img src="https://images.metahub.space/poster/medium/tt7708226/img" alt="Beast" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Beast</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="936075" data-type="movie" data-title="Michael" data-year="2026" data-quality="TS v2 | €lon" data-imdb="tt11378946">
+    <div class="card-poster" style="background:linear-gradient(135deg,#accbee,#e7f0fd)">
+      <span class="c-letter">M</span>
+      <img src="https://images.metahub.space/poster/medium/tt11378946/img" alt="Michael" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-ts">TS</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Michael</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="12133" data-type="movie" data-title="Step Brothers" data-year="2008" data-quality="HD" data-imdb="tt0838283">
+    <div class="card-poster" style="background:linear-gradient(135deg,#accbee,#e7f0fd)">
+      <span class="c-letter">S</span>
+      <img src="https://images.metahub.space/poster/medium/tt0838283/img" alt="Step Brothers" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Step Brothers</div>
+      <div class="card-yr">
+        <span>2008</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="302699" data-type="movie" data-title="Central Intelligence" data-year="2016" data-quality="HD" data-imdb="tt1489889">
+    <div class="card-poster" style="background:linear-gradient(135deg,#feada6,#f5efef)">
+      <span class="c-letter">C</span>
+      <img src="https://images.metahub.space/poster/medium/tt1489889/img" alt="Central Intelligence" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Central Intelligence</div>
+      <div class="card-yr">
+        <span>2016</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1391074" data-type="movie" data-title="Busboys" data-year="2026" data-quality="CAM | SyncUP" data-imdb="tt34705112">
+    <div class="card-poster" style="background:linear-gradient(135deg,#667eea,#43e97b)">
+      <span class="c-letter">B</span>
+      <img src="https://images.metahub.space/poster/medium/tt34705112/img" alt="Busboys" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Busboys</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1450527" data-type="movie" data-title="Forbidden Fruits" data-year="2026" data-quality="HD" data-imdb="tt30691214">
+    <div class="card-poster" style="background:linear-gradient(135deg,#feada6,#f5efef)">
+      <span class="c-letter">F</span>
+      <img src="https://images.metahub.space/poster/medium/tt30691214/img" alt="Forbidden Fruits" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Forbidden Fruits</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1327819" data-type="movie" data-title="Hoppers" data-year="2026" data-quality="HD" data-imdb="tt26443616">
+    <div class="card-poster" style="background:linear-gradient(135deg,#ff9a9e,#fad0c4)">
+      <span class="c-letter">H</span>
+      <img src="https://images.metahub.space/poster/medium/tt26443616/img" alt="Hoppers" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Hoppers</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1304313" data-type="movie" data-title="Lee Cronin s The Mummy" data-year="2026" data-quality="TS | EaZy" data-imdb="tt32612507">
+    <div class="card-poster" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+      <span class="c-letter">L</span>
+      <img src="https://images.metahub.space/poster/medium/tt32612507/img" alt="Lee Cronin s The Mummy" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-ts">TS</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Lee Cronin s The Mummy</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1292695" data-type="movie" data-title="They Will Kill You" data-year="2026" data-quality="HD" data-imdb="tt31728330">
+    <div class="card-poster" style="background:linear-gradient(135deg,#e0c3fc,#8ec5fc)">
+      <span class="c-letter">T</span>
+      <img src="https://images.metahub.space/poster/medium/tt31728330/img" alt="They Will Kill You" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">They Will Kill You</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1235877" data-type="movie" data-title="Jana Nayagan" data-year="2026" data-quality="HD" data-imdb="tt33379543">
+    <div class="card-poster" style="background:linear-gradient(135deg,#f093fb,#f5576c)">
+      <span class="c-letter">J</span>
+      <img src="https://images.metahub.space/poster/medium/tt33379543/img" alt="Jana Nayagan" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Jana Nayagan</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="980431" data-type="movie" data-title="The Legend of Aang  The Last Airbender" data-year="2026" data-quality="HD" data-imdb="tt18259538">
+    <div class="card-poster" style="background:linear-gradient(135deg,#e0c3fc,#8ec5fc)">
+      <span class="c-letter">T</span>
+      <img src="https://images.metahub.space/poster/medium/tt18259538/img" alt="The Legend of Aang  The Last Airbender" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">The Legend of Aang  The Last Airbender</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1290417" data-type="movie" data-title="Thrash" data-year="2026" data-quality="HD" data-imdb="tt32362890">
+    <div class="card-poster" style="background:linear-gradient(135deg,#a1c4fd,#c2e9fb)">
+      <span class="c-letter">T</span>
+      <img src="https://images.metahub.space/poster/medium/tt32362890/img" alt="Thrash" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Thrash</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1367642" data-type="movie" data-title="Reminders of Him" data-year="2026" data-quality="HD" data-imdb="tt33714084">
+    <div class="card-poster" style="background:linear-gradient(135deg,#feada6,#f5efef)">
+      <span class="c-letter">R</span>
+      <img src="https://images.metahub.space/poster/medium/tt33714084/img" alt="Reminders of Him" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Reminders of Him</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1226863" data-type="movie" data-title="The Super Mario Galaxy Movie" data-year="2026" data-quality="HD" data-imdb="tt28650488">
+    <div class="card-poster" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+      <span class="c-letter">T</span>
+      <img src="https://images.metahub.space/poster/medium/tt28650488/img" alt="The Super Mario Galaxy Movie" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">The Super Mario Galaxy Movie</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1408208" data-type="movie" data-title="Exit 8" data-year="2025" data-quality="HD" data-imdb="tt35222590">
+    <div class="card-poster" style="background:linear-gradient(135deg,#feada6,#f5efef)">
+      <span class="c-letter">E</span>
+      <img src="https://images.metahub.space/poster/medium/tt35222590/img" alt="Exit 8" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Exit 8</div>
+      <div class="card-yr">
+        <span>2025</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="687163" data-type="movie" data-title="Project Hail Mary" data-year="2026" data-quality="HD" data-imdb="tt12042730">
+    <div class="card-poster" style="background:linear-gradient(135deg,#a1c4fd,#c2e9fb)">
+      <span class="c-letter">P</span>
+      <img src="https://images.metahub.space/poster/medium/tt12042730/img" alt="Project Hail Mary" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Project Hail Mary</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1159831" data-type="movie" data-title="The Bride " data-year="2026" data-quality="HD" data-imdb="tt30851137">
+    <div class="card-poster" style="background:linear-gradient(135deg,#c471f5,#fa71cd)">
+      <span class="c-letter">T</span>
+      <img src="https://images.metahub.space/poster/medium/tt30851137/img" alt="The Bride " loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">The Bride </div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1171145" data-type="movie" data-title="Crime 101" data-year="2026" data-quality="HD" data-imdb="tt32430579">
+    <div class="card-poster" style="background:linear-gradient(135deg,#fa709a,#fee140)">
+      <span class="c-letter">C</span>
+      <img src="https://images.metahub.space/poster/medium/tt32430579/img" alt="Crime 101" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Crime 101</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1582770" data-type="movie" data-title="Dhurandhar  The Revenge" data-year="2026" data-quality="TS | EaZy" data-imdb="tt39139925">
+    <div class="card-poster" style="background:linear-gradient(135deg,#e9defa,#fbfcdb)">
+      <span class="c-letter">D</span>
+      <img src="https://images.metahub.space/poster/medium/tt39139925/img" alt="Dhurandhar  The Revenge" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-ts">TS</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Dhurandhar  The Revenge</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="83533" data-type="movie" data-title="Avatar  Fire and Ash" data-year="2025" data-quality="HD" data-imdb="tt1757678">
+    <div class="card-poster" style="background:linear-gradient(135deg,#667eea,#764ba2)">
+      <span class="c-letter">A</span>
+      <img src="https://images.metahub.space/poster/medium/tt1757678/img" alt="Avatar  Fire and Ash" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Avatar  Fire and Ash</div>
+      <div class="card-yr">
+        <span>2025</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1297842" data-type="movie" data-title="GOAT" data-year="2026" data-quality="HD" data-imdb="tt27613895">
+    <div class="card-poster" style="background:linear-gradient(135deg,#fdcbf1,#e6dee9)">
+      <span class="c-letter">G</span>
+      <img src="https://images.metahub.space/poster/medium/tt27613895/img" alt="GOAT" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">GOAT</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="467905" data-type="movie" data-title="How to Make a Killing" data-year="2026" data-quality="HD" data-imdb="tt4357198">
+    <div class="card-poster" style="background:linear-gradient(135deg,#f5576c,#ff6b6b)">
+      <span class="c-letter">H</span>
+      <img src="https://images.metahub.space/poster/medium/tt4357198/img" alt="How to Make a Killing" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">How to Make a Killing</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1198994" data-type="movie" data-title="Send Help" data-year="2026" data-quality="HD" data-imdb="tt8036976">
+    <div class="card-poster" style="background:linear-gradient(135deg,#667eea,#43e97b)">
+      <span class="c-letter">S</span>
+      <img src="https://images.metahub.space/poster/medium/tt8036976/img" alt="Send Help" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Send Help</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="502356" data-type="movie" data-title="The Super Mario Bros  Movie" data-year="2023" data-quality="HD" data-imdb="tt6718170">
+    <div class="card-poster" style="background:linear-gradient(135deg,#fa709a,#fee140)">
+      <span class="c-letter">T</span>
+      <img src="https://images.metahub.space/poster/medium/tt6718170/img" alt="The Super Mario Bros  Movie" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">The Super Mario Bros  Movie</div>
+      <div class="card-yr">
+        <span>2023</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="875828" data-type="movie" data-title="Peaky Blinders  The Immortal Man" data-year="2026" data-quality="HD" data-imdb="tt15574124">
+    <div class="card-poster" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb)">
+      <span class="c-letter">P</span>
+      <img src="https://images.metahub.space/poster/medium/tt15574124/img" alt="Peaky Blinders  The Immortal Man" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Peaky Blinders  The Immortal Man</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="701387" data-type="movie" data-title="Bugonia" data-year="2025" data-quality="HD" data-imdb="tt12300742">
+    <div class="card-poster" style="background:linear-gradient(135deg,#f093fb,#f5576c)">
+      <span class="c-letter">B</span>
+      <img src="https://images.metahub.space/poster/medium/tt12300742/img" alt="Bugonia" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Bugonia</div>
+      <div class="card-yr">
+        <span>2025</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1159559" data-type="movie" data-title="Scream 7" data-year="2026" data-quality="HD" data-imdb="tt27047903">
+    <div class="card-poster" style="background:linear-gradient(135deg,#48c6ef,#6f86d6)">
+      <span class="c-letter">S</span>
+      <img src="https://images.metahub.space/poster/medium/tt27047903/img" alt="Scream 7" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Scream 7</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1288072" data-type="movie" data-title="Keeper" data-year="2025" data-quality="HD" data-imdb="tt32332404">
+    <div class="card-poster" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">
+      <span class="c-letter">K</span>
+      <img src="https://images.metahub.space/poster/medium/tt32332404/img" alt="Keeper" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Keeper</div>
+      <div class="card-yr">
+        <span>2025</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1119449" data-type="movie" data-title="Good Luck  Have Fun  Don t Die" data-year="2026" data-quality="HD" data-imdb="tt1341338">
+    <div class="card-poster" style="background:linear-gradient(135deg,#f5576c,#ff6b6b)">
+      <span class="c-letter">G</span>
+      <img src="https://images.metahub.space/poster/medium/tt1341338/img" alt="Good Luck  Have Fun  Don t Die" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Good Luck  Have Fun  Don t Die</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1316092" data-type="movie" data-title="   Wuthering Heights   " data-year="2026" data-quality="HC | RGB" data-imdb="tt32897959">
+    <div class="card-poster" style="background:linear-gradient(135deg,#accbee,#e7f0fd)">
+      <span class="c-letter"> </span>
+      <img src="https://images.metahub.space/poster/medium/tt32897959/img" alt="   Wuthering Heights   " loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">   Wuthering Heights   </div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1092943" data-type="movie" data-title="Brides" data-year="2025" data-quality="HD" data-imdb="tt13289160">
+    <div class="card-poster" style="background:linear-gradient(135deg,#f093fb,#f5576c)">
+      <span class="c-letter">B</span>
+      <img src="https://images.metahub.space/poster/medium/tt13289160/img" alt="Brides" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Brides</div>
+      <div class="card-yr">
+        <span>2025</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1265609" data-type="movie" data-title="War Machine" data-year="2026" data-quality="HD" data-imdb="tt15940132">
+    <div class="card-poster" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">
+      <span class="c-letter">W</span>
+      <img src="https://images.metahub.space/poster/medium/tt15940132/img" alt="War Machine" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">War Machine</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="1010755" data-type="movie" data-title="The Strangers  Chapter 3" data-year="2026" data-quality="HD" data-imdb="tt28682323">
+    <div class="card-poster" style="background:linear-gradient(135deg,#fccb90,#d57eeb)">
+      <span class="c-letter">T</span>
+      <img src="https://images.metahub.space/poster/medium/tt28682323/img" alt="The Strangers  Chapter 3" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">The Strangers  Chapter 3</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div><div class="card" data-tmdb="696393" data-type="movie" data-title="Cold Storage" data-year="2026" data-quality="HD" data-imdb="tt8879928">
+    <div class="card-poster" style="background:linear-gradient(135deg,#accbee,#e7f0fd)">
+      <span class="c-letter">C</span>
+      <img src="https://images.metahub.space/poster/medium/tt8879928/img" alt="Cold Storage" loading="lazy" onload="this.classList.add('ld')" onerror="this.remove()" class="ld">
+      <div class="c-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></div>
+      <span class="c-badge l badge-m">MOVIE</span>
+      <span class="c-badge r q-hd">HD</span>
+      
+    </div>
+    <div class="card-info">
+      <div class="card-title">Cold Storage</div>
+      <div class="card-yr">
+        <span>2026</span>
+        
+      </div>
+    </div>
+  </div></div>
+  <div class="more-wrap" id="moreW" style="">
     <button class="more-btn" id="moreBtn" onclick="loadMore()">Load More</button>
   </div>
 </div>
@@ -466,7 +1125,7 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
     <div class="mp-backdrop" id="mpBackdrop"></div>
     <div class="mp-backdrop-grad"></div>
     <button class="mp-close" onclick="closeMoviePage()">
-      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"></path></svg>
     </button>
     <div class="mp-hero-content">
       <div class="mp-poster" id="mpPoster"></div>
@@ -481,11 +1140,11 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
     </div>
     <div class="mp-actions">
       <button class="mp-watch-btn" id="mpWatchBtn" onclick="startWatching()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
         Смотреть
       </button>
       <button class="mp-cont-btn" id="mpContBtn" onclick="continueWatching()" style="display:none">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
         Продолжить
       </button>
     </div>
@@ -508,17 +1167,10 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
   <div class="p-top">
     <h3 id="pTitle">Loading...</h3>
     <button class="close-x" onclick="closePlayer()">
-      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"></path></svg>
     </button>
   </div>
-  <div class="p-frame"><iframe 
-  id="pFrame" 
-  allowfullscreen 
-  allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; web-share"
-  sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation"
-  referrerpolicy="no-referrer-when-downgrade"
-  loading="lazy"
-></iframe></div>
+  <div class="p-frame"><iframe id="pFrame" allowfullscreen="" allow="autoplay;encrypted-media;picture-in-picture;fullscreen"></iframe></div>
   <!-- DONATE BANNER В ПЛЕЕРЕ -->
   <div class="p-donate-bar">
     <div class="p-donate-icon">🎁</div>
@@ -557,7 +1209,7 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
 <div class="modal" id="searchModal">
 <div class="s-box">
   <div class="s-wrap">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
     <input type="text" id="sInput" placeholder="Введите название..." autocomplete="off">
     <span class="s-filter-badge" id="sFilterBadge" onclick="changeSearchType()">🔍 Везде</span>
     <button class="s-esc" onclick="closeSearch()">ESC</button>
@@ -574,7 +1226,7 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
     <div style="display:flex;gap:8px;align-items:center">
       <button class="history-clear" onclick="clearHistory()">Очистить</button>
       <button class="close-x" onclick="closeHistory()">
-        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
     </div>
   </div>
@@ -587,7 +1239,7 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
 <div class="donate-popup">
   <div class="donate-top">
     <button class="close-x" onclick="closeDonate()">
-      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"></path></svg>
     </button>
     <div class="donate-gift-icon">🎁</div>
     <h3>Поддержи Befilm 🙏</h3>
@@ -682,20 +1334,20 @@ footer{text-align:center;padding:32px 20px;color:#fff;font-size:13px;border-top:
 
 <nav class="mnav">
   <button class="act" data-t="movies" onclick="switchTab('movies')">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path></svg>
     Movies
   </button>
   <button data-t="tv" onclick="switchTab('tv')">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
     TV
   </button>
   <button onclick="openSearchFlow()">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
     Search
   </button>
   <button onclick="openHistory()" id="mnavHistBtn">
-    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-    <span class="mnav-badge" id="mnavBadge"></span>
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span class="mnav-badge" id="mnavBadge" style="display: none;"></span>
     History
   </button>
 </nav>
@@ -731,13 +1383,21 @@ if('serviceWorker' in navigator){
 
 // ==================== CONFIG ====================
 const TVMAZE = 'https://api.tvmaze.com';
-const API_TIMEOUT = 3000; // 3 секунды — потом показываем VPN экран
+const API_TIMEOUT = 12000;        // 12 сек — мобильные сети + прокси
+const RETRY_DELAY = 1500;         // пауза между попытками
+const MAX_RETRIES = 3;            // попыток на каждый прокси
 
 const SERVERS=[
   {n:'MoviesAPI ⭐',u:(id,t,s,e)=>t==='tv'?`https://moviesapi.club/tv/${id}-${s}-${e}`:`https://moviesapi.club/movie/${id}`},
   {n:'VidSrc Pro',u:(id,t,s,e)=>t==='tv'?`https://vidsrc.pro/embed/tv?tmdb=${id}&season=${s}&episode=${e}`:`https://vidsrc.pro/embed/movie?tmdb=${id}`},
+  {n:'VidSrc.cc',u:(id,t,s,e)=>t==='tv'?`https://vidsrc.cc/v2/embed/tv/${id}/${s}/${e}`:`https://vidsrc.cc/v2/embed/movie/${id}`},
   {n:'AutoEmbed',u:(id,t,s,e)=>t==='tv'?`https://autoembed.co/tv/tmdb/${id}-${s}-${e}`:`https://autoembed.co/movie/tmdb/${id}`},
+  {n:'Embed.su',u:(id,t,s,e)=>t==='tv'?`https://embed.su/embed/tv/${id}/${s}/${e}`:`https://embed.su/embed/movie/${id}`},
   {n:'2Embed',u:(id,t,s,e)=>t==='tv'?`https://www.2embed.skin/embedtv/${id}&s=${s}&e=${e}`:`https://www.2embed.skin/embed/${id}`},
+  {n:'VidLink',u:(id,t,s,e)=>t==='tv'?`https://vidlink.pro/tv/${id}/${s}/${e}`:`https://vidlink.pro/movie/${id}`},
+  {n:'NontonGo',u:(id,t,s,e)=>t==='tv'?`https://www.nontongo.win/embed/tv/${id}/${s}/${e}`:`https://www.nontongo.win/embed/movie/${id}`},
+  {n:'SuperEmbed',u:(id)=>`https://multiembed.mov/?video_id=${id}&tmdb=1`},
+  {n:'SmashyStream',u:(id)=>`https://embed.smashystream.com/playere.php?tmdb=${id}`},
 ];
 
 const API_SOURCES=[{
@@ -756,9 +1416,14 @@ const API_SOURCES=[{
   }
 }];
 
+// Публичные прокси — работают без VPN ~70% времени, ротируются автоматически
 const PX=[
   u=>`https://corsproxy.io/?url=${encodeURIComponent(u)}`,
   u=>`https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+  u=>`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+  u=>`https://thingproxy.freeboard.io/fetch/${u}`,
+  u=>`https://corsproxy.org/?${encodeURIComponent(u)}`,
+  u=>`https://cors-anywhere.herokuapp.com/${u}`,
 ];
 
 const PAL=[['#667eea','#764ba2'],['#f093fb','#f5576c'],['#4facfe','#00f2fe'],['#43e97b','#38f9d7'],['#fa709a','#fee140'],['#a18cd1','#fbc2eb'],['#fccb90','#d57eeb'],['#ff9a9e','#fad0c4'],['#a1c4fd','#c2e9fb'],['#d4fc79','#96e6a1'],['#fbc2eb','#a6c1ee'],['#e0c3fc','#8ec5fc'],['#f5576c','#ff6b6b'],['#c471f5','#fa71cd'],['#48c6ef','#6f86d6'],['#accbee','#e7f0fd'],['#e9defa','#fbfcdb'],['#667eea','#43e97b'],['#feada6','#f5efef'],['#fdcbf1','#e6dee9']];
@@ -771,9 +1436,21 @@ let P={id:null,type:null,title:'',s:1,e:1,si:0};
 let progressInterval=null,watchStartTime=null;
 let pwaPrompt=null;
 let vpnShown=false;
+let gridLoaderInterval=null;
 
-// Кэш данных TVmaze
+// Кэш данных TVmaze + локальный кэш API
 const tvmazeCache={};
+const apiCache={}; // кэш запросов к API
+
+// Анимации загрузки
+const LOADING_STATES=[
+  {icon:'🎬',text:'Загружаем каталог фильмов...'},
+  {icon:'📡',text:'Подключаемся к серверам...'},
+  {icon:'🍿',text:'Ищем премьеры...'},
+  {icon:'🎞️',text:'Проверяем качество видео...'},
+  {icon:'⭐',text:'Распаковываем блокбастеры...'},
+  {icon:'🚀',text:'Почти готово...'}
+];
 
 // ==================== UTILS ====================
 function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML}
@@ -787,6 +1464,44 @@ function poster(imdb){return`https://images.metahub.space/poster/medium/${imdb}/
 function bgImg(imdb){return`https://images.metahub.space/background/medium/${imdb}/img`}
 function timeAgo(ts){const d=Date.now()-ts;if(d<60000)return'только что';if(d<3600000)return Math.floor(d/60000)+'м назад';if(d<86400000)return Math.floor(d/3600000)+'ч назад';return Math.floor(d/86400000)+'д назад'}
 function norm(item){return{title:item.t||item.orig_title||item.title||'',imdb:item.i||item.imdb_id||'',tmdb:String(item.m||item.tmdbid||item.id||''),year:item.y||item.year||'',quality:item.q||item.quality||item.Quality||'HD',type:item.type||tab}}
+
+// ======== ТРАНСЛИТЕРАЦИЯ ДЛЯ ПОИСКА НА РУССКОМ ========
+function transliterateRuToEn(str){
+  const map={
+    'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'y','к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'kh','ц':'ts','ч':'ch','ш':'sh','щ':'shch','ъ':'','ы':'y','ь':'','э':'e','ю':'yu','я':'ya',
+    'А':'A','Б':'B','В':'V','Г':'G','Д':'D','Е':'E','Ё':'Yo','Ж':'Zh','З':'Z','И':'I','Й':'Y','К':'K','Л':'L','М':'M','Н':'N','О':'O','П':'P','Р':'R','С':'S','Т':'T','У':'U','Ф':'F','Х':'Kh','Ц':'Ts','Ч':'Ch','Ш':'Sh','Щ':'Shch','Ъ':'','Ы':'Y','Ь':'','Э':'E','Ю':'Yu','Я':'Ya'
+  };
+  return str.split('').map(c=>map[c]||c).join('');
+}
+function hasCyrillic(str){return /[а-яёА-ЯЁ]/.test(str)}
+
+// ======== ЛОКАЛЬНЫЙ КЭШ API ========
+function getCacheKey(type,pg,dir,yr){return `befilm_${type}_${pg}_${dir}_${yr}`}
+function getCached(type,pg,dir,yr){
+  try{
+    const key=getCacheKey(type,pg,dir,yr);
+    const raw=localStorage.getItem(key);
+    if(!raw)return null;
+    const {data,time}=JSON.parse(raw);
+    // Кэш живёт 2 часа
+    if(Date.now()-time>2*3600*1000){localStorage.removeItem(key);return null}
+    return data;
+  }catch(e){return null}
+}
+function setCached(type,pg,dir,yr,data){
+  try{
+    const key=getCacheKey(type,pg,dir,yr);
+    localStorage.setItem(key,JSON.stringify({data,time:Date.now()}));
+  }catch(e){}
+}
+function clearApiCache(){
+  try{
+    for(let i=localStorage.length-1;i>=0;i--){
+      const k=localStorage.key(i);
+      if(k?.startsWith('befilm_'))localStorage.removeItem(k);
+    }
+  }catch(e){}
+}
 
 // ==================== VPN SCREEN ====================
 function showVpnScreen(){
@@ -953,61 +1668,120 @@ async function getTvDataByName(name){
 }
 
 // ==================== FETCH ====================
-async function smartFetch(url,timeout=2000){
-  try{const c=new AbortController();const t=setTimeout(()=>c.abort(),timeout);const r=await fetch(url,{signal:c.signal});clearTimeout(t);if(r.ok)return await r.json()}catch(e){}
-  for(const px of PX){try{const c=new AbortController();const t=setTimeout(()=>c.abort(),3000);const r=await fetch(px(url),{signal:c.signal});clearTimeout(t);if(r.ok)return await r.json()}catch(e){}}
+async function smartFetch(url, timeout = 12000, retries = 2) {
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    // Прямой запрос
+    try {
+      const c = new AbortController();
+      const t = setTimeout(() => c.abort(), timeout);
+      const r = await fetch(url, { signal: c.signal });
+      clearTimeout(t);
+      if (r.ok) return await r.json();
+    } catch (e) {}
+    // Через прокси с перемешиванием
+    const shuffled = [...PX].sort(() => Math.random() - 0.5);
+    for (const px of shuffled) {
+      try {
+        const c = new AbortController();
+        const t = setTimeout(() => c.abort(), timeout + 3000);
+        const r = await fetch(px(url), { signal: c.signal });
+        clearTimeout(t);
+        if (r.ok) return await r.json();
+      } catch (e) {}
+    }
+    if (attempt < retries) {
+      await new Promise(r => setTimeout(r, RETRY_DELAY * (attempt + 1)));
+    }
+  }
   return null;
 }
 
-async function fetchFromAnySrc(type,pg=1,dir='desc',yr=''){
+async function fetchFromAnySrc(type, pg = 1, dir = 'desc', yr = '') {
   setApiLoading();
-  const start=Date.now();
 
-  for(const src of API_SOURCES){
-    try{
-      const url=type==='tv'?src.tv(pg,dir,yr):src.movies(pg,dir,yr);
-      const j=await smartFetch(url,API_TIMEOUT);
-      if(!j)continue;
-      const parsed=src.parse(j);
-      if(parsed&&parsed.items&&parsed.items.length>0){
-        setApiStatus(true,src.name);
-        return{...parsed,_src:src};
+  // 1) Проверяем локальный кэш
+  const cached = getCached(type, pg, dir, yr);
+  if (cached && cached.items && cached.items.length > 0) {
+    setApiStatus(true, 'Cache');
+    return { ...cached, _src: API_SOURCES[0] };
+  }
+
+  // 2) Пробуем загрузить из API
+  for (const src of API_SOURCES) {
+    try {
+      const url = type === 'tv' ? src.tv(pg, dir, yr) : src.movies(pg, dir, yr);
+      const j = await smartFetch(url, API_TIMEOUT);
+      if (!j) continue;
+      const parsed = src.parse(j);
+      if (parsed && parsed.items && parsed.items.length > 0) {
+        setApiStatus(true, src.name);
+        setCached(type, pg, dir, yr, parsed);
+        return { ...parsed, _src: src };
       }
-    }catch(e){}
+    } catch (e) {}
   }
 
-  // Если прошло больше 8 сек и ничего — показываем VPN экран
-  if(Date.now()-start>=API_TIMEOUT-1000 && !vpnShown){
-    showVpnScreen();
-  } else {
-    setApiStatus(false);
-    // Тихий фейл — показываем пустую сетку с сообщением
-    showNoContentMessage();
-  }
+  // 3) Fallback: старый кэш (до 24 часов)
+  try {
+    const key = getCacheKey(type, pg, dir, yr);
+    const raw = localStorage.getItem(key);
+    if (raw) {
+      const { data, time } = JSON.parse(raw);
+      if (Date.now() - time < 24 * 3600 * 1000 && data.items && data.items.length > 0) {
+        setApiStatus(false);
+        toast('Показаны сохранённые данные — API временно недоступен');
+        return { ...data, _src: API_SOURCES[0] };
+      }
+    }
+  } catch (e) {}
+
+  // 4) Мягкий фейл
+  setApiStatus(false);
+  showNoContentMessage();
   return null;
 }
 
-function showNoContentMessage(){
-  const g=document.getElementById('grid');
-  g.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px 20px">
-    <div style="font-size:48px;margin-bottom:16px">🔒</div>
-    <p style="font-size:18px;font-weight:700;margin-bottom:8px">Контент недоступен</p>
-    <p style="color:var(--text2);font-size:14px;margin-bottom:20px">Сервисы с фильмами заблокированы в России. Включи VPN и попробуй снова.</p>
-    <button onclick="retryAfterVpn()" style="padding:12px 28px;border-radius:10px;background:var(--accent);color:#fff;border:none;font-size:14px;font-weight:700;cursor:pointer">🔄 Попробовать снова</button>
+function showNoContentMessage() {
+  const g = document.getElementById('grid');
+  g.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px 20px">
+    <div style="font-size:48px;margin-bottom:16px;animation:pulse 2s infinite">📡</div>
+    <p style="font-size:18px;font-weight:700;margin-bottom:8px">Не удалось загрузить</p>
+    <p style="color:var(--text2);font-size:14px;margin-bottom:8px">Все прокси временно недоступны или требуется VPN</p>
+    <p style="color:var(--text2);font-size:12px;margin-bottom:20px">Попробуйте обновить страницу через минуту</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button onclick="switchTab(tab,false)" style="padding:12px 28px;border-radius:10px;background:var(--accent);color:#fff;border:none;font-size:14px;font-weight:700;cursor:pointer">🔄 Повторить</button>
+      <button onclick="clearApiCache();switchTab(tab,false)" style="padding:12px 28px;border-radius:10px;background:var(--bg3);color:var(--text);border:1px solid var(--border);font-size:14px;font-weight:700;cursor:pointer">🗑 Очистить кэш</button>
+      <button onclick="showVpnScreen()" style="padding:12px 28px;border-radius:10px;background:var(--bg3);color:var(--yellow);border:1px solid rgba(250,204,21,.3);font-size:14px;font-weight:700;cursor:pointer">🔒 VPN?</button>
+    </div>
   </div>`;
 }
 
-async function searchFromAnySrc(query,type='both'){
-  let allResults=[];
-  for(const src of API_SOURCES){
-    try{
-      const fetches=[];
-      if(type==='movie'||type==='both')fetches.push(smartFetch(src.searchMovie(query),3000).then(j=>({j,_type:'movie',src})));
-      if(type==='tv'||type==='both')fetches.push(smartFetch(src.searchTv(query),3000).then(j=>({j,_type:'tv',src})));
-      const results=await Promise.allSettled(fetches);
-      for(const r of results){if(r.status==='fulfilled'&&r.value?.j){const parsed=r.value.src.parse(r.value.j);if(parsed?.items?.length)allResults=allResults.concat(parsed.items.map(i=>({...i,_searchType:r.value._type})))}}
-      if(allResults.length>0)break;
-    }catch(e){}
+async function searchFromAnySrc(query, type = 'both') {
+  let allResults = [];
+  const queries = [query];
+
+  // Если русский — добавляем транслитерацию
+  if (hasCyrillic(query)) {
+    queries.push(transliterateRuToEn(query));
+  }
+
+  for (const q of queries) {
+    for (const src of API_SOURCES) {
+      try {
+        const fetches = [];
+        if (type === 'movie' || type === 'both') fetches.push(smartFetch(src.searchMovie(q), 8000).then(j => ({ j, _type: 'movie', src })));
+        if (type === 'tv' || type === 'both') fetches.push(smartFetch(src.searchTv(q), 8000).then(j => ({ j, _type: 'tv', src })));
+        const results = await Promise.allSettled(fetches);
+        for (const r of results) {
+          if (r.status === 'fulfilled' && r.value?.j) {
+            const parsed = r.value.src.parse(r.value.j);
+            if (parsed?.items?.length) allResults = allResults.concat(parsed.items.map(i => ({ ...i, _searchType: r.value._type })));
+          }
+        }
+        if (allResults.length > 0) break;
+      } catch (e) {}
+    }
+    if (allResults.length > 0) break;
   }
   return allResults;
 }
@@ -1032,6 +1806,7 @@ function cardHTML(item,mt){
   // TVmaze данные из кэша
   const tvD=isTV?(tvmazeCache[n.imdb]||tvmazeCache['name_'+n.title]||null):null;
   const totalEps=tvD?tvD.eps.reduce((a,b)=>a+b,0):0;
+  const tvInfo=tvD?`<span class="card-seasons">${tvD.seasons} сез.</span><span class="card-episodes">${totalEps} эп.</span>`:(isTV?`<span class="card-seasons" id="tvph-${n.tmdb}" style="opacity:.6;animation:pulse 1.5s infinite">⏳ загрузка...</span>`:'');
   return`<div class="card" data-tmdb="${n.tmdb}" data-type="${isTV?'tv':'movie'}" data-title="${escA(n.title)}" data-year="${n.year}" data-quality="${n.quality}" data-imdb="${n.imdb}">
     <div class="card-poster" style="background:linear-gradient(135deg,${c1},${c2})">
       <span class="c-letter">${l}</span>
@@ -1043,42 +1818,49 @@ function cardHTML(item,mt){
     </div>
     <div class="card-info">
       <div class="card-title">${esc(n.title)}</div>
-      <div class="card-yr">
+      <div class="card-yr" id="cyr-${n.tmdb}">
         ${n.year?`<span>${n.year}</span>`:''}
-        ${tvD?`<span class="card-seasons">${tvD.seasons} сез.</span><span class="card-episodes">${totalEps} эп.</span>`:''}
+        ${tvInfo}
       </div>
     </div>
   </div>`;
 }
 
-// Подгружаем TVmaze данные для сериалов в фоне
+// Подгружаем TVmaze данные для сериалов в фоне (пачками по 3)
 async function loadTvDataForGrid(items, mt){
   if(mt!=='tv')return;
-  for(const item of items){
-    const n=norm(item);
-    if(!n.imdb&&!n.title)continue;
-    const key=n.imdb||'name_'+n.title;
-    if(tvmazeCache[key])continue;
-    // Загружаем в фоне без ожидания
-    (async()=>{
+  const batchSize = 3;
+  for(let i=0;i<items.length;i+=batchSize){
+    const batch = items.slice(i,i+batchSize);
+    await Promise.all(batch.map(async item=>{
+      const n=norm(item);
+      if(!n.imdb&&!n.title)return;
+      const key=n.imdb||'name_'+n.title;
+      if(tvmazeCache[key]){
+        // Уже в кэше — просто обновляем DOM
+        updateTvCard(n.tmdb,tvmazeCache[key]);
+        return;
+      }
       const data = n.imdb
         ? await getTvDataByImdb(n.imdb)
         : await getTvDataByName(n.title);
       if(data){
-        // Обновляем карточку если она есть в DOM
-        const card=document.querySelector(`.card[data-tmdb="${n.tmdb}"]`);
-        if(card){
-          const yrEl=card.querySelector('.card-yr');
-          if(yrEl){
-            const totalEps=data.eps.reduce((a,b)=>a+b,0);
-            // Убираем старые бейджи если есть
-            yrEl.querySelectorAll('.card-seasons,.card-episodes').forEach(el=>el.remove());
-            yrEl.innerHTML+= `<span class="card-seasons">${data.seasons} сез.</span><span class="card-episodes">${totalEps} эп.</span>`;
-          }
-        }
+        tvmazeCache[key]=data;
+        updateTvCard(n.tmdb,data);
       }
-    })();
+    }));
+    // Небольшая пауза между пачками чтобы не DDoSить TVmaze
+    if(i+batchSize<items.length)await new Promise(r=>setTimeout(r,300));
   }
+}
+function updateTvCard(tmdb,data){
+  const card=document.querySelector(`.card[data-tmdb="${tmdb}"]`);
+  if(!card)return;
+  const yrEl=card.querySelector('.card-yr');
+  if(!yrEl)return;
+  yrEl.querySelectorAll('.card-seasons,.card-episodes').forEach(el=>el.remove());
+  const totalEps=data.eps.reduce((a,b)=>a+b,0);
+  yrEl.innerHTML+=`<span class="card-seasons">${data.seasons} сез.</span><span class="card-episodes">${totalEps} эп.</span>`;
 }
 
 function renderGrid(items,mt,append){
@@ -1096,7 +1878,7 @@ function renderHero(item,mt){
   if(!item)return;const n=norm(item);const isTV=mt==='tv';
   const hbg=document.getElementById('heroBg');
   if(n.imdb){hbg.style.backgroundImage=`url(${bgImg(n.imdb)})`;const img=new Image();img.onload=()=>hbg.classList.add('ld');img.src=bgImg(n.imdb)}
-  const tvD=isTV?(tvmazeCache[n.imdb]||null):null;
+  const tvD=isTV?(tvmazeCache[n.imdb]||tvmazeCache['name_'+n.title]||null):null;
   const totalEps=tvD?tvD.eps.reduce((a,b)=>a+b,0):0;
   document.getElementById('heroText').innerHTML=`
     <div class="hero-badge">${isTV?'📺 TV Show':'🎬 Movie'} · Latest on Befilm</div>
@@ -1115,41 +1897,70 @@ function renderHero(item,mt){
 }
 
 function hideLoader(){const l=document.getElementById('loader');if(l){l.classList.add('hide');setTimeout(()=>l.remove(),600)}}
+function showGridLoader(){
+  const g=document.getElementById('grid');
+  let sk='';
+  for(let i=0;i<8;i++){sk+=`<div class="card skeleton-card"><div class="skeleton-poster"></div><div class="skeleton-info"><div class="skeleton-title"></div><div class="skeleton-yr"></div></div></div>`}
+  g.innerHTML=`<div class="grid-loader-wrap"><div class="grid-loader-icon">${LOADING_STATES[0].icon}</div><div class="grid-loader-text">${LOADING_STATES[0].text}</div></div>${sk}`;
+  let idx=0;
+  const ic=g.querySelector('.grid-loader-icon'),tx=g.querySelector('.grid-loader-text');
+  gridLoaderInterval=setInterval(()=>{
+    idx=(idx+1)%LOADING_STATES.length;
+    if(ic){ic.style.transform='scale(0.5)';ic.style.opacity='0';setTimeout(()=>{ic.textContent=LOADING_STATES[idx].icon;ic.style.transform='scale(1)';ic.style.opacity='1';},200)}
+    if(tx){tx.style.opacity='0';setTimeout(()=>{tx.textContent=LOADING_STATES[idx].text;tx.style.opacity='1';},250)}
+  },2000);
+}
+function hideGridLoader(){if(gridLoaderInterval){clearInterval(gridLoaderInterval);gridLoaderInterval=null}}
 
 // ==================== TABS ====================
-async function switchTab(t,bypassInit=false){
-  tab=t;page=1;
-  document.querySelectorAll('.nav-btn,.mnav button[data-t]').forEach(b=>b.classList.toggle('act',b.dataset.t===t));
-  document.getElementById('secTitle').textContent=t==='tv'?'📺 Последние сериалы':'🎬 Последние фильмы';
-  document.getElementById('yearF').value='';document.getElementById('sortF').value='desc';
-
-  // Сразу показываем загрузку (без локальных данных)
-  document.getElementById('grid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text2)">
-    <div style="font-size:32px;margin-bottom:12px;animation:pulse 1.5s infinite">⏳</div>
-    <p style="font-size:14px">Загружаем контент...</p>
-  </div>`;
-
-  const data=await fetchFromAnySrc(t==='tv'?'tv':'movie',1,'desc','');
-  if(data&&data.items.length){
-    lastPage=data.lastPage;
-    renderGrid(data.items,t==='tv'?'tv':'movie');
-    renderHero(data.items[0],t==='tv'?'tv':'movie');
+async function switchTab(t, bypassInit = false) {
+  tab = t; page = 1;
+  document.querySelectorAll('.nav-btn,.mnav button[data-t]').forEach(b => b.classList.toggle('act', b.dataset.t === t));
+  document.getElementById('secTitle').textContent = t === 'tv' ? '📺 Последние сериалы' : '🎬 Последние фильмы';
+  document.getElementById('yearF').value = '';
+  document.getElementById('sortF').value = 'desc';
+  showGridLoader();
+  const data = await fetchFromAnySrc(t === 'tv' ? 'tv' : 'movie', 1, 'desc', '');
+  hideGridLoader();
+  if (data && data.items.length) {
+    lastPage = data.lastPage;
+    renderGrid(data.items, t === 'tv' ? 'tv' : 'movie');
+    renderHero(data.items[0], t === 'tv' ? 'tv' : 'movie');
   }
 }
 
-async function applyFilters(){
-  page=1;const yr=document.getElementById('yearF').value;const dir=document.getElementById('sortF').value;const type=tab==='tv'?'tv':'movie';
-  document.getElementById('grid').innerHTML='';
-  const data=await fetchFromAnySrc(type,1,dir,yr);
-  if(data&&data.items.length){lastPage=data.lastPage;renderGrid(data.items,type)}
+async function applyFilters() {
+  page = 1;
+  const yr = document.getElementById('yearF').value;
+  const dir = document.getElementById('sortF').value;
+  const type = tab === 'tv' ? 'tv' : 'movie';
+  showGridLoader();
+  const data = await fetchFromAnySrc(type, 1, dir, yr);
+  hideGridLoader();
+  if (data && data.items.length) {
+    lastPage = data.lastPage;
+    renderGrid(data.items, type);
+  }
 }
 
-async function loadMore(){
-  page++;const btn=document.getElementById('moreBtn');btn.disabled=true;btn.textContent='Загрузка...';
-  const type=tab==='tv'?'tv':'movie';const yr=document.getElementById('yearF').value;const dir=document.getElementById('sortF').value;
-  if(apiOk){const data=await fetchFromAnySrc(type,page,dir,yr);if(data&&data.items.length){lastPage=data.lastPage;renderGrid(data.items,type,true)}else{document.getElementById('moreW').style.display='none';toast('Больше нет контента')}}
-  else document.getElementById('moreW').style.display='none';
-  btn.disabled=false;btn.textContent='Load More';
+async function loadMore() {
+  page++;
+  const btn = document.getElementById('moreBtn');
+  btn.disabled = true;
+  btn.textContent = 'Загрузка...';
+  const type = tab === 'tv' ? 'tv' : 'movie';
+  const yr = document.getElementById('yearF').value;
+  const dir = document.getElementById('sortF').value;
+  const data = await fetchFromAnySrc(type, page, dir, yr);
+  if (data && data.items.length) {
+    lastPage = data.lastPage;
+    renderGrid(data.items, type, true);
+  } else {
+    document.getElementById('moreW').style.display = 'none';
+    toast('Больше нет контента');
+  }
+  btn.disabled = false;
+  btn.textContent = 'Load More';
 }
 
 function goHome(){switchTab('movies',false);window.scrollTo({top:0,behavior:'smooth'})}
@@ -1198,16 +2009,13 @@ async function openMoviePage(tmdb,type,title,imdb,year,quality){
   const tvBlock=document.getElementById('mpTvBlock');
   if(type==='tv'){
     tvBlock.classList.add('show');
-    // Показываем лоадер пока грузим TVmaze
     document.getElementById('mpTvStats').innerHTML='';
     document.getElementById('mpSeasonsTabs').innerHTML='<div class="mp-tv-loading">⏳ Загружаем данные о сериале...</div>';
     document.getElementById('mpEpisodesGrid').innerHTML='';
-
-    // Открываем модал сразу
     document.getElementById('moviePageModal').classList.add('act');
     document.body.style.overflow='hidden';
 
-    // Загружаем TVmaze в фоне
+    // Загружаем TVmaze
     const tvData = imdb
       ? await getTvDataByImdb(imdb)
       : await getTvDataByName(title);
@@ -1215,7 +2023,6 @@ async function openMoviePage(tmdb,type,title,imdb,year,quality){
     if(tvData){
       MP.tvData=tvData;
       renderTvBlock(tvData,tmdb);
-      // Обновляем мета
       const totalEps=tvData.eps.reduce((a,b)=>a+b,0);
       document.getElementById('mpMeta').innerHTML=`
         <span class="q-tag ${qC(quality)}">${qL(quality)}</span>
@@ -1225,7 +2032,6 @@ async function openMoviePage(tmdb,type,title,imdb,year,quality){
         <span style="color:rgba(255,255,255,.4)">·</span>
         <span>${tvData.seasons} сез. / ${totalEps} эп.</span>`;
     }else{
-      // TVmaze не ответил — рендерим заглушку
       document.getElementById('mpSeasonsTabs').innerHTML='';
       renderTvBlockFallback(tmdb);
     }
@@ -1244,9 +2050,10 @@ async function openMoviePage(tmdb,type,title,imdb,year,quality){
 // Fallback если TVmaze не ответил
 function renderTvBlockFallback(tmdb){
   document.getElementById('mpTvStats').innerHTML=`
-    <div class="mp-tv-stat"><span class="mp-tv-stat-icon">📺</span><div><div class="mp-tv-stat-val">?</div><div class="mp-tv-stat-label">Сезонов</div></div></div>`;
+    <div class="mp-tv-stat"><span class="mp-tv-stat-icon">📺</span><div><div class="mp-tv-stat-val">?</div><div class="mp-tv-stat-label">Сезонов</div></div></div>
+    <div class="mp-tv-stat"><span class="mp-tv-stat-icon">🎬</span><div><div class="mp-tv-stat-val">?</div><div class="mp-tv-stat-label">Серий</div></div></div>`;
   document.getElementById('mpSeasonsTabs').innerHTML=Array.from({length:5},(_,i)=>
-    `<button class="mp-season-tab${i===0?' act':''}" onclick="selectSeason(${i+1})">${i+1}</button>`
+    `<button class="mp-season-tab${i===0?' act':''}" onclick="selectSeason(${i+1})">${i+1} сезон</button>`
   ).join('');
   MP.tvData={seasons:5,eps:[10,10,10,10,10],status:'ongoing'};
   renderEpisodes(MP.tvData,1,1);
@@ -1257,6 +2064,10 @@ function renderTvBlock(tvData,tmdb){
   const watchedS=hi?hi.s||1:1;const watchedE=hi?hi.e||1:1;
   MP.s=watchedS;MP.e=watchedE;
   const totalEps=tvData.eps.reduce((a,b)=>a+b,0);
+  document.getElementById('mpTvStats').innerHTML=`
+    <div class="mp-tv-stat"><span class="mp-tv-stat-icon">📺</span><div><div class="mp-tv-stat-val">${tvData.seasons}</div><div class="mp-tv-stat-label">Сезонов</div></div></div>
+    <div class="mp-tv-stat"><span class="mp-tv-stat-icon">🎬</span><div><div class="mp-tv-stat-val">${totalEps}</div><div class="mp-tv-stat-label">Серий</div></div></div>
+    <div class="mp-tv-stat"><span class="mp-tv-stat-icon">${tvData.status==='ongoing'?'🟢':'⚫'}</span><div><div class="mp-tv-stat-val" style="font-size:13px">${tvData.status==='ongoing'?'Выходит':'Завершён'}</div><div class="mp-tv-stat-label">Статус</div></div></div>`;
   document.getElementById('mpSeasonsTabs').innerHTML=Array.from({length:tvData.seasons},(_,i)=>
     `<button class="mp-season-tab${i+1===watchedS?' act':''}" onclick="selectSeason(${i+1})">${i+1} сезон</button>`
   ).join('');
@@ -1292,20 +2103,12 @@ function startWatching(){openPlayer(MP.id,MP.type,MP.title,MP.si,MP.s,MP.e,true)
 function continueWatching(){openPlayer(MP.id,MP.type,MP.title,MP.si,MP.s,MP.e,false)}
 
 // ==================== PLAYER ====================
-
 function openPlayer(tmdb,type,title,si,s,e,fromStart){
   P={id:tmdb,type,title,si:si||0,s:s||1,e:e||1};
   const hi=getHistoryItem(tmdb);
   saveToHistory({tmdb:String(tmdb),type,title,imdb:MP.imdb||'',year:MP.year||'',quality:MP.quality||'HD',s:s||1,e:e||1,progress:fromStart?0:(hi?hi.progress||0:0)});
   document.getElementById('pTitle').textContent=title+(type==='tv'?` — S${s||1} E${e||1}`:'');
-
-  // Сброс iframe перед загрузкой (Fix для PWA)
-  const iframe=document.getElementById('pFrame');
-  iframe.src='about:blank';
-  setTimeout(()=>{
-    iframe.src=SERVERS[si||0].u(tmdb,type,s||1,e||1);
-  },150);
-
+  document.getElementById('pFrame').src=SERVERS[si||0].u(tmdb,type,s||1,e||1);
   document.getElementById('playerModal').classList.add('act');
   document.body.style.overflow='hidden';
   clearInterval(progressInterval);watchStartTime=Date.now();
@@ -1412,5 +2215,6 @@ document.addEventListener('keydown',e=>{
   },800);
 })();
 </script>
-</body>
-</html>
+
+
+</body></html>
